@@ -1,0 +1,69 @@
+/* CSS Variables */
+:root {
+  --accent: #4A9B6E;
+  --accent-bright: #6BCB8E;
+  --accent-deep: #2D6B4A;
+  --gold: #C9A84C;
+  --moss: #3B5240;
+  --bark: #2A1E14;
+  --earth: #1A120A;
+  --canopy: #0F1A0D;
+  --crisis: #1E120A;
+  --crisis-warm: #3D2210;
+}
+
+/* Base Styles & Resets */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--moss) #0a0a08;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #080806;
+  color: #d6cfc2;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar { 
+  width: 6px; 
+}
+
+::-webkit-scrollbar-track { 
+  background: #0a0a08; 
+}
+
+::-webkit-scrollbar-thumb { 
+  background: var(--moss); 
+  border-radius: 3px; 
+}
+
+/* Accessibility & Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .hero-title { 
+    font-size: 2.4rem !important; 
+  }
+  
+  .floating-donate { 
+    width: 52px; 
+    height: 52px; 
+    bottom: 20px; 
+    right: 20px; 
+  }
+}
