@@ -43,11 +43,7 @@ const BackgroundEffects = () => {
       for (let i = 0; i < waterfallConfig.particleCount; i++) {
         const p = resetParticle({});
         
-        /** 
-         * PRE-WARM LOGIC: 
-         * Distribute particles evenly along the waterfall trajectory
-         * to create a consistent stream instead of random bursts
-         */
+ 
         const progress = i / waterfallConfig.particleCount;
         p.y = waterfallConfig.spawnY + (progress * verticalRange);
         
@@ -106,7 +102,7 @@ const BackgroundEffects = () => {
     };
 
     const drawWaterfall = () => {
-      ctx.strokeStyle = 'rgba(180, 220, 255, 0.7)';
+      ctx.strokeStyle = 'rgba(0, 28, 53, 0.7)';
       ctx.lineWidth = 1.2;
       const scrollOffset = window.scrollY;
       

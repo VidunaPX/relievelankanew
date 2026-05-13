@@ -14,6 +14,13 @@
   --mountain-shadow: #1A120A;
   --mountain-highlight: #3B5240;
   --mountain-opacity: 0.7;
+
+  /* Brands Colors */
+  --dark-blue: #050956;
+  --light-blue: #345087;
+  --soft-blue: #e4fcff;
+  --gold-accent: #ded8a5;
+  --gold-light: #fbfacc;
 }
 
 /* Base Styles & Resets */
@@ -31,9 +38,11 @@ html {
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background: #99a8ff05;
+  background:  linear-gradient(180deg, var(--dark-blue) 0%, var(--light-blue) 50%,  var(--soft-blue) 100%);
+
   color: #d6cfc2;
   overflow-x: hidden;
+  background-attachment: fixed;
 }
 
 /* Scrollbar Styling */
