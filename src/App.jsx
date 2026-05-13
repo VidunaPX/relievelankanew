@@ -73,12 +73,13 @@ const App = () => {
           donors={donors}
           onShowDonationDetails={handleShowDonationDetails}
         />
+        <Donate onDonation={handleDonation} />
         <Crisis />
         <Intervention />
         <Impact />
         <AboutUs />
         <Future />
-        <Donate onDonation={handleDonation} />
+        
       </main>
       
       {/* Footer */}

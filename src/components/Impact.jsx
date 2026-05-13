@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styleCompants/Impact.css';
+import "../styles/global.css"
 
 const Impact = () => {
   const impactStats = [

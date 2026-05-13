@@ -3,165 +3,211 @@ import '../styles/waterfall.css';
 import mountImg from '../assets/mountain.png';
 import '../styles/mountain.css';
 
-let mountainX = 0
-
 const BackgroundEffects = () => {
   const canvasRef = useRef(null);
   const atmosphereRef = useRef(null);
   const rippleFlashRef = useRef(null);
   const mountImgRef = useRef(new Image());
-  const [themeClass, setThemeClass] = useState('mountain-default');
-
+  const [themeClass] = useState('mountain-default');
 
   useEffect(() => {
     mountImgRef.current.src = mountImg;
 
     const canvas = canvasRef.current;
-    const atmosphere = atmosphereRef.current;
-    const rippleFlash = rippleFlashRef.current;
-    
-    if (!canvas || !atmosphere || !rippleFlash) return;
+    if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
+    
     let W, H;
     let fireflies = [];
+    let waterFallParticles = [];
 
-    // Resize canvas
+    const waterfallConfig = {
+      particleCount: 2000, 
+      spawnX: () => window.innerWidth * 0.99, 
+      spawnY: -400, 
+    };
+
     const resizeCanvas = () => {
       W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
     };
 
-    // Load mountain image
+    // --- Waterfall Logic ---
+    const initWaterfall = () => {
+      waterFallParticles = [];
+      const currentScroll = window.scrollY;
+      // We want the waterfall to exist from spawnY down to the bottom of the screen immediately
+      const verticalRange = H + 600; 
 
-    mountImgRef.current.onload = () => {
-      console.log("Mountain loaded!");
+      for (let i = 0; i < waterfallConfig.particleCount; i++) {
+        const p = resetParticle({});
+        
+        /** 
+         * PRE-WARM LOGIC: 
+         * Distribute particles evenly along the waterfall trajectory
+         * to create a consistent stream instead of random bursts
+         */
+        const progress = i / waterfallConfig.particleCount;
+        p.y = waterfallConfig.spawnY + (progress * verticalRange);
+        
+        // Calculate what the velocity should be at this point in the trajectory
+        // Based on gravity accumulation: vy = initial_vy + gravity * time
+        const timeToReachY = (p.y - waterfallConfig.spawnY) / 3; // approximate time
+        p.vy = 2 + (0.15 * timeToReachY); // initial vy + gravity * time
+        
+        // Calculate horizontal position based on the arc trajectory
+        // x = initial_x + vx * time
+        p.x = waterfallConfig.spawnX() + (p.vx * timeToReachY);
+        
+        waterFallParticles.push(p);
+      }
     };
-    
-    // Initialize fireflies
+
+    const resetParticle = (p, fillGap = false) => {
+      p.x = waterfallConfig.spawnX() + (Math.random() * 40 - 20);
+      
+      if (fillGap) {
+        // Spawn at random height within visible range to fill gaps
+        const currentScroll = window.scrollY;
+        const visibleRange = H + 600;
+        p.y = waterfallConfig.spawnY + (Math.random() * visibleRange);
+        
+        // Calculate appropriate velocity for this position
+        const timeToReachY = (p.y - waterfallConfig.spawnY) / 3;
+        p.vy = 2 + (0.15 * timeToReachY);
+        p.x = waterfallConfig.spawnX() + (p.vx * timeToReachY);
+      } else {
+        // Normal spawn at top
+        p.y = waterfallConfig.spawnY;
+        p.vx = -5 + Math.random() * 5;
+        p.vy = Math.random() * 3 + 2;
+      }
+      
+      p.opacity = Math.random() * 0.4 + 0.2;
+      return p;
+    };
+
+    const updateWaterfall = () => {
+      waterFallParticles.forEach(p => {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.vy += 0.15; // Gravity
+
+        const currentScroll = window.scrollY;
+        
+        // RECYCLING: If it leaves the view, reset it
+        // 30% chance to fill gaps by spawning at random height, 70% spawn at top
+        if (p.y > H + currentScroll + 100) {
+          const fillGap = Math.random() < 0.3;
+          resetParticle(p, fillGap);
+        }
+      });
+    };
+
+    const drawWaterfall = () => {
+      ctx.strokeStyle = 'rgba(180, 220, 255, 0.7)';
+      ctx.lineWidth = 1.2;
+      const scrollOffset = window.scrollY;
+      
+      waterFallParticles.forEach(p => {
+        const screenY = p.y - scrollOffset;
+        const screenX = p.x;
+
+        if (screenY > -500 && screenY < H + 50) {
+          ctx.globalAlpha = p.opacity;
+          ctx.beginPath();
+          ctx.moveTo(screenX, screenY);
+          ctx.lineTo(screenX - p.vx, screenY - p.vy);
+          ctx.stroke();
+        }
+      });
+      ctx.globalAlpha = 1;
+    };
+
+    // --- Firefly Logic ---
     const initFireflies = () => {
       fireflies = [];
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 25; i++) {
         fireflies.push({
           x: Math.random() * W,
-          y: H * 0.3 + Math.random() * H * 0.5,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
           size: Math.random() * 2 + 1,
           glow: Math.random(),
-          glowSpeed: Math.random() * 0.02 + 0.01
+          glowSpeed: Math.random() * 0.03 + 0.01
         });
       }
     };
 
-    // Draw firefly
-    const drawFirefly = (firefly) => {
-      ctx.save();
-      const glowIntensity = Math.sin(firefly.glow) * 0.5 + 0.5;
-      
-      // Glow
-      const gradient = ctx.createRadialGradient(firefly.x, firefly.y, 0, firefly.x, firefly.y, firefly.size * 4);
-      gradient.addColorStop(0, `rgba(255, 255, 200, ${glowIntensity * 0.3})`);
-      gradient.addColorStop(1, 'rgba(255, 255, 200, 0)');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(firefly.x - firefly.size * 4, firefly.y - firefly.size * 4, firefly.size * 8, firefly.size * 8);
-      
-      // Core
-      ctx.globalAlpha = glowIntensity;
-      ctx.fillStyle = '#FFFFCC';
-      ctx.beginPath();
-      ctx.arc(firefly.x, firefly.y, firefly.size, 0, Math.PI * 2);
-      ctx.fill();
-      
-      ctx.restore();
-    };
-
-    // Update fireflies
     const updateFireflies = () => {
-      fireflies.forEach(firefly => {
-        firefly.x += firefly.vx;
-        firefly.y += firefly.vy;
-        firefly.glow += firefly.glowSpeed;
-        
-        if (Math.random() < 0.01) {
-          firefly.vx = (Math.random() - 0.5) * 0.3;
-          firefly.vy = (Math.random() - 0.5) * 0.3;
-        }
-        
-        if (firefly.x < 0) firefly.x = W;
-        if (firefly.x > W) firefly.x = 0;
-        if (firefly.y < 0) firefly.y = H;
-        if (firefly.y > H) firefly.y = 0;
+      fireflies.forEach(f => {
+        f.x += f.vx;
+        f.y += f.vy;
+        f.glow += f.glowSpeed;
+        if (f.x < 0 || f.x > W) f.x = f.x < 0 ? W : 0;
+        if (f.y < 0 || f.y > H) f.y = f.y < 0 ? H : 0;
       });
     };
 
-    // Animation loop
+    const drawFirefly = (f) => {
+      const glow = Math.sin(f.glow) * 0.5 + 0.5;
+      ctx.fillStyle = `rgba(255, 255, 200, ${glow})`;
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
     const render = () => {
       ctx.clearRect(0, 0, W, H);
+
       if (mountImgRef.current.complete) {
         const img = mountImgRef.current;
-        // Maintain aspect ratio: height = width * (imgHeight / imgWidth)
         const aspect = img.height / img.width;
-        const mWidth = W; 
+        const mWidth = W;
         const mHeight = W * aspect;
-    
-      // Draw the image pinned to the bottom
-      ctx.drawImage(img, mountainX, H - mHeight, mWidth, mHeight);
-    
-      // Subtle movement
-      /* mountainX -= 0.05; */
-    
-      // Simple reset if it scrolls too far (or use a seamless loop)
-      if (mountainX <= -W) mountainX = 0; 
-    }
-      // Draw fireflies
-      fireflies.forEach(drawFirefly);
+        const mountY = (H - mHeight) + (window.scrollY * 0.3);
+        ctx.drawImage(img, 0, mountY, mWidth, mHeight);
+      }
+
+      updateWaterfall();
+      drawWaterfall();
       
-      // Update
       updateFireflies();
-      
+      fireflies.forEach(drawFirefly);
+
       requestAnimationFrame(render);
     };
 
-    // Initialize
     resizeCanvas();
+    initWaterfall(); // Now populates the whole screen immediately
     initFireflies();
-    
-    // Set initial funding state for animation
-    setTimeout(() => {
-      render();
-    }, 500);
+    const animationId = requestAnimationFrame(render);
 
-    // Event listeners
     window.addEventListener('resize', resizeCanvas);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 
   return (
     <>
+      <div ref={atmosphereRef} id="atmosphere" aria-hidden="true" />
+      <div ref={rippleFlashRef} className="ripple-flash" aria-hidden="true" />
       <canvas 
-        ref={canvasRef}
-        id="waterfallCanvas" 
-        aria-hidden="true"
-      />
-      <div 
-        ref={atmosphereRef}
-        id="atmosphere" 
-        aria-hidden="true"
-      />
-      <div 
-        ref={rippleFlashRef}
-        className="ripple-flash" 
-        aria-hidden="true"
-      />
-      <canvas 
-        ref={canvasRef}
+        ref={canvasRef} 
         id="waterfallCanvas" 
         className={themeClass} 
-        aria-hidden="true"
+        style={{ 
+          position: 'fixed', 
+          top: 0, 
+          left: 0, 
+          zIndex: -1,
+          pointerEvents: 'none' 
+        }}
       />
     </>
   );

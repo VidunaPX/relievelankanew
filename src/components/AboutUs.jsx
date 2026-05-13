@@ -1,31 +1,32 @@
+
 import React from 'react';
 import '../styleCompants/AboutUs.css';
 
 const AboutUs = () => {
   const teamMembers = [
     {
-      name: 'Dr. Amara Perera',
-      role: 'Executive Director',
+      name: 'Viduna Pilanthange',
+      role: 'Founder',
       icon: 'fa-stethoscope',
-      image: 'https://picsum.photos/seed/team1/300/300.jpg',
+      image: 'vidunaimage.png',
       bio: '15+ years in humanitarian relief. Former UN coordinator specializing in disaster response and community resilience programs.'
     },
     {
-      name: 'Rajiv Fernando',
+      name: 'Deepaka Wickramasekara',
       role: 'Program Director',
       icon: 'fa-hands-holding-child',
-      image: 'https://picsum.photos/seed/team2/300/300.jpg',
+      image: 'deepimage.png',
       bio: 'Education specialist focused on learning continuity. Led 50+ school rebuilding projects across South Asia with innovative approaches.'
     },
     {
-      name: 'Nimali De Silva',
+      name: 'Jaynil Patel',
       role: 'Water & Sanitation Lead',
       icon: 'fa-droplet',
       image: 'https://picsum.photos/seed/team3/300/300.jpg',
       bio: 'Environmental engineer with expertise in water systems. Designed and implemented 200+ clean water solutions in disaster zones.'
     },
     {
-      name: 'Kavisha Gunaratne',
+      name: 'Joshitaa ',
       role: 'Operations Manager',
       icon: 'fa-chart-line',
       image: 'https://picsum.photos/seed/team4/300/300.jpg',
