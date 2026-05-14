@@ -57,15 +57,15 @@ const Donate = ({ onDonation }) => {
   return (
     <section id="donate" className="flex items-center relative" style={{ minHeight: '100vh' }}>
       <div className="section-content max-w-2xl mx-auto px-6 py-24 text-center w-full">
-        <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: 'var(--accent-bright)', border: '1px solid rgba(107,203,142,0.25)', background: 'rgba(107,203,142,0.04)' }}>
+        {/* <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: 'var(--accent-bright)', border: '1px solid rgba(107,203,142,0.25)', background: 'rgba(107,203,142,0.04)' }}>
           <i className="fa-solid fa-droplet mr-1"></i> Add to the Flow
-        </span>
+        </span> */}
         <h2 className="font-display text-3xl md:text-5xl text-white mb-4 leading-tight">
-          Choose Your Impact
+          Fund a Future
         </h2>
-        <p className="text-sm mb-10" style={{ color: 'rgba(214,207,194,0.35)' }}>
+        {/* <p className="text-sm mb-10" style={{ color: 'rgba(214,207,194,0.35)' }}>
           Watch the waterfall respond to your generosity in real time
-        </p>
+        </p> */}
 
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           {donationAmounts.map((item, index) => (

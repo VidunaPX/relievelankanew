@@ -34,15 +34,14 @@ const Impact = () => {
     <section id="impact" className="flex items-center relative" style={{ minHeight: '100vh' }}>
       <div className="section-content max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center w-full">
         <div>
-          <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: '#5EAA5E', border: '1px solid rgba(94,170,94,0.25)', background: 'rgba(94,170,94,0.04)' }}>
+          {/* <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: '#5EAA5E', border: '1px solid rgba(94,170,94,0.25)', background: 'rgba(94,170,94,0.04)' }}>
             <i className="fa-solid fa-seedling mr-1"></i> Impact
-          </span>
+          </span> */}
           <h2 className="font-display text-3xl md:text-5xl text-white mb-6 leading-tight">
-            Students Return.<br />Stability Restored.
+            Our promise.<br />to the community. {/* Add scrolling test which fades in and out - */}
           </h2>
           <p className="text-base leading-relaxed mb-8" style={{ color: 'rgba(214,207,194,0.45)' }}>
-            Rebuilt classrooms open their doors. Textbooks replaced. Teachers retrained. The ecosystem of learning — and life — begins to thrive again. What was broken is now stronger.
-          </p>
+            It is a way to jumpstart a community and accelerate its own growth. We are committed to ensuring that for students in the most vulnerable areas, merit becomes the only determinant in post-secondary education. By removing the financial barriers of transport, rent, and tuition, we promise to level the playing field between rural scholars and their urban peer
           <div className="grid grid-cols-2 gap-4">
             {impactStats.map((stat, index) => (
               <div key={index} className="stat-card">

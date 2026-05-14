@@ -1,22 +1,22 @@
-import React from 'react';
+
 import '../styleCompants/Intervention.css';
 
 const Intervention = () => {
   const reliefItems = [
     {
       icon: 'fa-droplet',
-      title: 'Clean Water Restoration',
-      description: 'Reverse osmosis systems deployed to 45 villages'
+      title: 'Student-Based Grants',
+      description: 'Merit-based scholarships that cover the "hidden costs'
     },
     {
       icon: 'fa-tent',
-      title: 'Temporary Shelters',
-      description: '800+ family shelters with sanitation facilities'
+      title: 'School Infrastructure',
+      description: 'Restoring flood-damaged classrooms with 24/7 learning facilities'
     },
     {
       icon: 'fa-book-open',
-      title: 'Learning Continuity',
-      description: 'Mobile classrooms serving 12,000 students'
+      title: 'Direct Accountability',
+      description: 'We use direct reimbursement and bi-weekly audits to ensure every dollar fuels academic success, not misuse'
     }
   ];
 
@@ -33,14 +33,15 @@ const Intervention = () => {
           <div className="absolute inset-0 rounded-2xl" style={{ background: 'linear-gradient(to top, rgba(15,26,13,0.75), transparent 50%)' }}></div>
         </div>
         <div className="order-1 md:order-2">
-          <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: 'var(--accent)', border: '1px solid rgba(74,155,110,0.25)', background: 'rgba(74,155,110,0.04)' }}>
+          {/* <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: 'var(--accent)', border: '1px solid rgba(74,155,110,0.25)', background: 'rgba(74,155,110,0.04)' }}>
             <i className="fa-solid fa-hand-holding-heart mr-1"></i> Intervention
-          </span>
+          </span> */}
+
           <h2 className="font-display text-3xl md:text-5xl text-white mb-6 leading-tight">
-            Relief Begins.<br />Water Finds Its Path.
+            Precision-Based Recovery.<br />Education is the only way out..
           </h2>
           <p className="text-base leading-relaxed mb-8" style={{ color: 'rgba(214,207,194,0.45)' }}>
-            Emergency supplies reach the hardest-hit areas. Clean water systems restored. Temporary learning spaces established. The first signs of recovery emerge as communities come together with international support.
+            Relieve Lanka was founded by Grade 11 students with a single realization: talent is universal, but opportunity is not. We don't provide generic handouts; we invest in a precision-based plan to ensure that merit remains the only determinant for success in Sri Lanka. By leveraging localized connections and a 90% fund-to-field model, we bypass traditional overhead to put your donation directly into the hands of the students who need it most.
           </p>
           <div className="space-y-4">
             {reliefItems.map((item, index) => (

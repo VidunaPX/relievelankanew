@@ -16,16 +16,16 @@ const Hero = ({ funding = 0, goal = 50000, donors = 0, onShowDonationDetails }) 
     updateMilestones(percentage);
   }, [funding, goal]);
 
-  useEffect(() => {
+  // useEffect(() => {
     // Simulate recent donor feed
-    const donorNames = ['Anonymous', 'Sarah K.', 'John D.', 'Maria L.', 'David R.', 'Emma S.'];
-    const interval = setInterval(() => {
-      const randomDonor = donorNames[Math.floor(Math.random() * donorNames.length)];
-      setRecentDonors(prev => [...prev.slice(-2), randomDonor]);
-    }, 3000 + Math.random() * 4000);
+    //const donorNames = ['Anonymous', 'Sarah K.', 'John D.', 'Maria L.', 'David R.', 'Emma S.'];
+    // const interval = setInterval(() => {
+    //  const randomDonor = donorNames[Math.floor(Math.random() * donorNames.length)];
+     // setRecentDonors(prev => [...prev.slice(-2), randomDonor]);
+    //}, 3000 + Math.random() * 4000);
 
-    return () => clearInterval(interval);
-  }, []);
+    // return () => clearInterval(interval);
+  // }, []);
 
   const updateProgressRing = (percentage) => {
     if (progressRingRef.current) {
@@ -94,24 +94,24 @@ const Hero = ({ funding = 0, goal = 50000, donors = 0, onShowDonationDetails }) 
         {/* Left Content */}
         <div className="text-left order-2 md:order-1">
           <h1 className="hero-title font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6 animate-fade-in-up">
-            Every Drop<br />
-            <span style={{ color: 'var(--accent-bright)' }}>Restores a Forest</span>
+            Same Age<br />
+            <span style={{ color: 'var(--accent-bright)' }}> Different Worlds</span>
           </h1>
 
           <p className="text-base md:text-lg max-w-lg mb-8 animate-fade-in-up delay-200" style={{ color: 'rgba(214,207,194,0.5)', lineHeight: '1.7' }}>
-            Sri Lanka's flood-devastated communities are waiting. Your donation doesn't just fund relief — it transforms this ecosystem from crisis to recovery, right before your eyes.
+            Talent is universal. Opporunity is not. While we prepare for our futures, our peers in Sri Lanka are fighting to continue their education. 
           </p>
 
           <div className="mb-8 animate-fade-in-up delay-400">
             {/* Recent donor feed */}
-            <div className="flex flex-wrap gap-2 mb-4" style={{ minHeight: '24px' }}>
+            {/* <div className="flex flex-wrap gap-2 mb-4" style={{ minHeight: '24px' }}>
               {recentDonors.map((donor, index) => (
                 <div key={index} className="donor-feed-item">
                   <i className="fa-solid fa-heart text-xs mr-1"></i>
                   {donor}
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           <div className="animate-fade-in-up delay-600">
@@ -120,16 +120,16 @@ const Hero = ({ funding = 0, goal = 50000, donors = 0, onShowDonationDetails }) 
               onClick={() => smoothScrollTo('donate')} 
               aria-label="Begin donating"
             >
-              Add to the Flow
+              About our Cause
               <i className="fa-solid fa-arrow-down ml-2 text-sm"></i>
             </button>
           </div>
 
-          <div className="mt-12 animate-fade-in-up delay-800" style={{ color: 'rgba(214,207,194,0.15)' }}>
+         {/* - <div className="mt-12 animate-fade-in-up delay-800" style={{ color: 'rgba(214,207,194,0.15)' }}>
             <p className="text-xs uppercase tracking-widest mb-2">Scroll to follow the water</p>
             <i className="fa-solid fa-chevron-down text-sm" style={{ animation: 'bounce 2s infinite' }}></i>
-          </div>
-        </div>
+          </div>*/} 
+        </div> 
 
         {/* Right Progress Ring */}
         <div className="flex justify-center order-1 md:order-2">
@@ -205,12 +205,12 @@ const Hero = ({ funding = 0, goal = 50000, donors = 0, onShowDonationDetails }) 
               </div>
             </div>
             
-            <div className="absolute top-1/2 -left-8 transform -translate-y-1/2 donor-indicator">
+           {/*} <div className="absolute top-1/2 -left-8 transform -translate-y-1/2 donor-indicator">
               <div className="flex items-center gap-1">
                 <i className="fa-solid fa-heart text-xs" style={{ color: 'var(--accent)' }}></i>
                 <span className="text-xs font-medium">{donors}</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

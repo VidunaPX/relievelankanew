@@ -23,9 +23,9 @@ const Future = () => {
   return (
     <section id="future" className="flex items-center relative" style={{ minHeight: '100vh' }}>
       <div className="section-content max-w-4xl mx-auto px-6 py-24 text-center w-full">
-        <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: 'var(--gold)', border: '1px solid rgba(201,168,76,0.25)', background: 'rgba(201,168,76,0.04)' }}>
+        {/* <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: 'var(--gold)', border: '1px solid rgba(201,168,76,0.25)', background: 'rgba(201,168,76,0.04)' }}>
           <i className="fa-solid fa-sun mr-1"></i> The Future
-        </span>
+        </span> */}
         <h2 className="font-display text-3xl md:text-5xl text-white mb-6 leading-tight">
           Sustainable Recovery.<br />
           <span style={{ color: 'var(--gold)' }}>A Forest That Keeps Growing.</span>

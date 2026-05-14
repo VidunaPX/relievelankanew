@@ -198,15 +198,15 @@ const BackgroundEffects = () => {
       updateWaterfall();
       drawWaterfall();
       
-      updateFireflies();
-      fireflies.forEach(drawFirefly);
+      //updateFireflies();
+       // fireflies.forEach(drawFirefly); 
 
       requestAnimationFrame(render);
     };
 
     resizeCanvas();
     initWaterfall(); // Now populates the whole screen immediately
-    initFireflies();
+    // initFireflies();
     const animationId = requestAnimationFrame(render);
 
     window.addEventListener('resize', resizeCanvas);

@@ -6,14 +6,14 @@ const Crisis = () => {
     <section id="crisis" className="flex items-center relative" style={{ minHeight: '100vh' }}>
       <div className="section-content max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center w-full">
         <div>
-          <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: '#B87A3D', border: '1px solid rgba(184,122,61,0.25)', background: 'rgba(184,122,61,0.04)' }}>
+          {/* <span className="inline-block text-xs uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style={{ color: '#B87A3D', border: '1px solid rgba(184,122,61,0.25)', background: 'rgba(184,122,61,0.04)' }}>
             <i className="fa-solid fa-cloud-rain mr-1"></i> The Crisis
-          </span>
+          </span> */}
           <h2 className="font-display text-3xl md:text-5xl text-white mb-6 leading-tight">
-            Schools Disrupted.<br />Lives Paused.
+            Schooling Disrupted.<br /> Education Paused.
           </h2>
           <p className="text-base leading-relaxed mb-8" style={{ color: 'rgba(214,207,194,0.45)' }}>
-            Heavy monsoon floods across Sri Lanka have submerged entire communities. Over 340 schools damaged. 180,000 students displaced. Classrooms under water. Textbooks destroyed. Futures uncertain.
+            In the wake of Cyclone Ditwah, 'free' education is no longer enough. Families living below the poverty line cannot afford the 2-3 hour journey to remaining schools or the equipment lost to the water. We target the most vulnerable students in the Mine Divisional Secretariat, providing the capital needed to overcome a system that currently filters out those without means.
           </p>
           <div className="grid grid-cols-3 gap-4">
             <div className="stat-card text-center">
@@ -32,7 +32,7 @@ const Crisis = () => {
         </div>
         <div className="relative">
           <img 
-            src="https://picsum.photos/seed/lankaflood22/600/450.jpg" 
+            src="students_flood.jpg" 
             alt="Flood damage in Sri Lanka"
             className="rounded-2xl w-full object-cover" 
             style={{ filter: 'brightness(0.5) saturate(0.4) sepia(0.2)', border: '1px solid rgba(184,122,61,0.12)' }}
