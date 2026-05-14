@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/waterfall.css';
-import mountImg from '../assets/mountain.png';
+import mountImg from '../assets/mountainfront.png';
+import mountImg2 from '../assets/mountain2.png';
+import mountImg3 from '../assets/mountain3.png';
+import mountImg4 from '../assets/mountain4.png';
 import '../styles/mountain.css';
 
 const BackgroundEffects = () => {
@@ -8,10 +11,17 @@ const BackgroundEffects = () => {
   const atmosphereRef = useRef(null);
   const rippleFlashRef = useRef(null);
   const mountImgRef = useRef(new Image());
+  const mountImg2Ref = useRef(new Image());
+  const mountImg3Ref = useRef(new Image());
+  const mountImg4Ref = useRef(new Image());
+
   const [themeClass] = useState('mountain-default');
 
   useEffect(() => {
     mountImgRef.current.src = mountImg;
+    mountImg2Ref.current.src = mountImg2;
+    mountImg3Ref.current.src = mountImg3;
+    mountImg4Ref.current.src = mountImg4;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -102,7 +112,7 @@ const BackgroundEffects = () => {
     };
 
     const drawWaterfall = () => {
-      ctx.strokeStyle = 'rgba(0, 28, 53, 0.7)';
+      ctx.strokeStyle = 'rgb(255, 255, 255)';
       ctx.lineWidth = 1.2;
       const scrollOffset = window.scrollY;
       
@@ -158,14 +168,32 @@ const BackgroundEffects = () => {
     const render = () => {
       ctx.clearRect(0, 0, W, H);
 
-      if (mountImgRef.current.complete) {
-        const img = mountImgRef.current;
-        const aspect = img.height / img.width;
-        const mWidth = W;
-        const mHeight = W * aspect;
-        const mountY = (H - mHeight) + (window.scrollY * 0.3);
-        ctx.drawImage(img, 0, mountY, mWidth, mHeight);
-      }
+      const drawLayer = (imgRef, speed, color, yOffset) => {
+    if (!imgRef.current.complete) return;
+    
+      const img = imgRef.current;
+      const aspect = img.height / img.width;
+      const mWidth = W;
+      const mHeight = W * aspect;
+    
+      // Calculate Y based on scroll speed
+      const mountY = (H - mHeight) + (window.scrollY * speed) + yOffset;
+
+      // Draw the silhouette
+      ctx.drawImage(img, 0, mountY+200, mWidth, mHeight);
+    
+      // Tint the silhouette
+      ctx.globalCompositeOperation = "source-in";
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, W, H);
+    
+      // VERY IMPORTANT: Reset so the next layer actually shows up!
+      ctx.globalCompositeOperation = "source-over";
+  };
+      drawLayer(mountImg4Ref, 0.05, "rgba(255, 255, 255, 0.2)", 100); // Furthest/Slowest
+      drawLayer(mountImg3Ref, 0.1,  "rgba(255, 255, 255, 0.4)", 150);
+      drawLayer(mountImg2Ref, 0.2,  "rgba(255, 255, 255, 0.6)", 200);
+      drawLayer(mountImgRef,  0.3,  "rgba(255, 255, 255, 0.8)", 250);
 
       updateWaterfall();
       drawWaterfall();
@@ -201,7 +229,7 @@ const BackgroundEffects = () => {
           position: 'fixed', 
           top: 0, 
           left: 0, 
-          zIndex: -1,
+          zIndex: 10,
           pointerEvents: 'none' 
         }}
       />
