@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles/global.css';
 import './styles/waterfall.css';
-import BackgroundEffects from './components/BackgroundEffects';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Crisis from './components/Crisis';
@@ -55,9 +54,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* Background Effects - Always rendered first for z-index layering */}
-      <BackgroundEffects />
-      
       {/* Toast Notification */}
       <div id="toast" className="toast" role="alert" aria-live="polite"></div>
       
@@ -68,12 +64,14 @@ const App = () => {
       <main className="relative z-10">
         {/* Components can be reordered here without breaking functionality */}
         <Hero 
+          onShowDonationDetails={handleShowDonationDetails}
+        />
+        <Donate 
+          onDonation={handleDonation} 
           funding={funding} 
           goal={goal} 
           donors={donors}
-          onShowDonationDetails={handleShowDonationDetails}
         />
-        <Donate onDonation={handleDonation} />
         <Crisis />
         <Intervention />
         <Impact />

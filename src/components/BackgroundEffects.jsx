@@ -29,7 +29,6 @@ const BackgroundEffects = () => {
     const ctx = canvas.getContext('2d');
     
     let W, H;
-    let fireflies = [];
     let waterFallParticles = [];
 
     const waterfallConfig = {
@@ -131,40 +130,6 @@ const BackgroundEffects = () => {
       ctx.globalAlpha = 1;
     };
 
-    // --- Firefly Logic ---
-    const initFireflies = () => {
-      fireflies = [];
-      for (let i = 0; i < 25; i++) {
-        fireflies.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          size: Math.random() * 2 + 1,
-          glow: Math.random(),
-          glowSpeed: Math.random() * 0.03 + 0.01
-        });
-      }
-    };
-
-    const updateFireflies = () => {
-      fireflies.forEach(f => {
-        f.x += f.vx;
-        f.y += f.vy;
-        f.glow += f.glowSpeed;
-        if (f.x < 0 || f.x > W) f.x = f.x < 0 ? W : 0;
-        if (f.y < 0 || f.y > H) f.y = f.y < 0 ? H : 0;
-      });
-    };
-
-    const drawFirefly = (f) => {
-      const glow = Math.sin(f.glow) * 0.5 + 0.5;
-      ctx.fillStyle = `rgba(255, 255, 200, ${glow})`;
-      ctx.beginPath();
-      ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
-      ctx.fill();
-    };
-
     const render = () => {
       ctx.clearRect(0, 0, W, H);
 
@@ -195,17 +160,15 @@ const BackgroundEffects = () => {
       drawLayer(mountImg2Ref, 0.2,  "rgba(255, 255, 255, 0.6)", 200);
       drawLayer(mountImgRef,  0.3,  "rgba(255, 255, 255, 0.8)", 250);
 
-      updateWaterfall();
-      drawWaterfall();
-      
-      //updateFireflies();
-       // fireflies.forEach(drawFirefly); 
+      // Waterfall paused
+      // updateWaterfall();
+      // drawWaterfall();
 
       requestAnimationFrame(render);
     };
 
     resizeCanvas();
-    initWaterfall(); // Now populates the whole screen immediately
+    // initWaterfall(); // Waterfall disabled for now
     // initFireflies();
     const animationId = requestAnimationFrame(render);
 
