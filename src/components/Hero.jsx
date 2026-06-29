@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styleCompants/Hero.css';
 import "../styles/global.css"
+import myVideo from '../assets/test.mp4';
 
 const Hero = ({ onShowDonationDetails }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
   const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
@@ -10,28 +13,68 @@ const Hero = ({ onShowDonationDetails }) => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+const styles = {
+  overlay: {
+    position: "absolute",
+    inset: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "rgba(61, 47, 47, 0)",
+  },
+  text: {
+    color: "white",
+    fontSize: "10rem",
+    fontFamily: "Cinzel, serif",
+    fontWeight: "bold",
+    transform: "translateY(-10px)",
+  }
+};
+
   return (
-    <section id="hero" className="flex items-center justify-center relative" style={{ minHeight: '100vh' }}>
-      <div className="max-w-4xl mx-auto px-6 w-full">
-        <div className="text-center">
-          <h1 className="hero-title font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6 animate-fade-in-up">
-            Relieve Lanka<br />
-            <span style={{ color: 'var(--accent-bright)' }}> Different Worlds</span>
-          </h1>
-
-          <p className="text-base md:text-lg mx-auto max-w-xl mb-8 animate-fade-in-up delay-200" style={{ color: 'rgba(214,207,194,0.5)', lineHeight: '1.7' }}>
-            Talent is universal. Opportunity is not. While we prepare for our futures, our peers in Sri Lanka are fighting to continue their education.
-          </p>
-
-          <div className="animate-fade-in-up delay-600 flex justify-center">
-            <button 
-              className="donate-cta" 
-              onClick={() => smoothScrollTo('donate')} 
-              aria-label="Scroll to donation section"
+    <section id="hero" className="relative min-h-screen">
+      <div className="hero-video-shell">
+        <div className="video-background">
+          <img className="video-logo" src="/relieveLankalogo.png" alt="Relieve Lanka logo" />
+          <div className="video-nav" ref={menuRef}>
+            <button
+              className="hamburger-button"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle navigation menu"
+              aria-expanded={menuOpen}
+              
             >
-              About our Cause
-              <i className="fa-solid fa-arrow-down ml-2 text-sm"></i>
+              <span></span>
+              <span></span>
+              <span></span>
             </button>
+            {menuOpen && (
+              <div className="video-menu">
+                <button onClick={() => { smoothScrollTo('Crisis'); setMenuOpen(false); }}>Crisis</button>
+                <button onClick={() => { smoothScrollTo('Solution'); setMenuOpen(false); }}>Solution</button>
+                <button onClick={() => { smoothScrollTo('Fund'); setMenuOpen(false); }}>Fund</button>
+                <button onClick={() => { smoothScrollTo('Our Projects'); setMenuOpen(false); }}>Our Projects</button>
+
+              </div>
+            )}
+          </div>
+          <video className="hero-video" autoPlay muted loop playsInline>
+            <source src={myVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div style={styles.overlay}>
+            <h1 style={styles.text}>Relieve Lanka</h1>
           </div>
         </div>
       </div>

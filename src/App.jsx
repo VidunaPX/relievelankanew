@@ -57,8 +57,6 @@ const App = () => {
       {/* Toast Notification */}
       <div id="toast" className="toast" role="alert" aria-live="polite"></div>
       
-      {/* Header Navigation */}
-      <Header />
       
       {/* Main Content */}
       <main className="relative z-10">
