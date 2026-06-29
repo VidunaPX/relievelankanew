@@ -66,13 +66,13 @@ const App = () => {
         <Hero 
           onShowDonationDetails={handleShowDonationDetails}
         />
+        <Crisis />
         <Donate 
           onDonation={handleDonation} 
           funding={funding} 
           goal={goal} 
           donors={donors}
         />
-        <Crisis />
         <Intervention />
         <Impact />
         <AboutUs />

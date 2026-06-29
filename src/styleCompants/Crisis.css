@@ -1,4 +1,5 @@
 .stat-card {
+  height: 100%;
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.05);
   border-radius: 16px;
@@ -12,3 +13,126 @@
   border-color: rgba(74,155,110,0.15);
   transform: translateY(-4px);
 }
+
+
+.embla {
+  position: relative;
+  overflow: hidden;
+  width:100%;
+  height: var(--slide-height);
+  --slide-size: 100%; 
+  --slide-height: 30rem;
+  --slide-spacing: 1rem;
+
+  --slide-size: 50%;
+
+}
+
+.embla__viewport {
+  overflow: hidden;
+
+  height: 100%;
+}
+
+.embla__container {
+  display: flex;
+  height: 100%; 
+  align-items: stretch; 
+  touch-action: pan-y pinch-zoom;
+}
+
+.embla__slide {
+  height: 100%; 
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+
+.crisis-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.crisis-component-wrapper {
+  background: var(--dark-blue);
+  padding: 4rem 2rem;
+  border-radius: 32px; 
+  margin: 2rem;       
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.content-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  padding: 3rem;
+  margin-top: 2rem;
+  
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+.text-area h2 {
+  color: var(--gold-light);
+}
+
+.text-area p {
+  color: var(--soft-blue);
+}
+.text-area {
+  text-align: left;  
+  max-width: 600px; 
+}
+crisis-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.content-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr; 
+  gap: 2rem;
+  align-items: center;
+}
+
+.action-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100; /* Increased z-index to ensure it sits above everything */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  display: flex; /* Centers the < and > icons */
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-btn.prev { left: 20px; }
+.nav-btn.next { right: 20px; }
