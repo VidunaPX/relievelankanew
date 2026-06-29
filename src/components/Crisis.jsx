@@ -31,7 +31,17 @@ const Crisis = () => {
       <div className="crisis-container">
         {/* Carousel Section */}
         <div className="embla">
-          {/* ... */}
+          <div className="embla__viewport" ref={emblaRef}>
+            <div className="embla__container">
+              {SLIDE_DATA.map((_, i) => (
+                <div className="embla__slide" key={i}>
+                  <div className="stat-card">Image {i + 1}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <button className="nav-btn prev" onClick={scrollPrev}>&lt;</button>
+          <button className="nav-btn next" onClick={scrollNext}>&gt;</button>
         </div>
 
         {/* Text and Action Section */}
