@@ -23,7 +23,7 @@ const App = () => {
 
   // Use fixed funding and donor count
   useEffect(() => {
-    setFunding(50);
+    setFunding(52);
     setDonors(1);
   }, []);
 

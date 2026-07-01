@@ -59,3 +59,9 @@
 .donate-panel-copy {
   color: rgba(214, 207, 194, 0.9);
 }
+
+.donate-cta {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}

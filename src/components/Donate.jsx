@@ -117,16 +117,15 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
             </div>
 
             <div className="flex justify-center">
-              <button 
-                className="donate-cta" 
-                onClick={() => {
-                  processDonation();
-                  triggerRippleFlash();
-                }}
+              <a 
+                href="https://gofund.me/f1c00af39" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="donate-cta inline-block"
               >
                 Donate on GoFundMe
                 <i className="fa-solid fa-water ml-2 text-sm"></i>
-              </button>
+              </a>
             </div>
 
           </div>
