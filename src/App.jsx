@@ -15,29 +15,16 @@ import useScrollObserver from './hooks/useScrollObserver';
 const App = () => {
   const [funding, setFunding] = useState(0);
   const [donors, setDonors] = useState(0);
-  const goal = 50000;
+  const goal = 10000;
 
   // Initialize scroll observer
   useScrollObserver();
 
-  // Simulate initial funding and donors
+  // Use fixed funding and donor count
   useEffect(() => {
-    const initialFunding = 12500;
-    const initialDonors = 47;
-    setFunding(initialFunding);
-    setDonors(initialDonors);
+    setFunding(50);
+    setDonors(1);
   }, []);
-
-  // Simulate periodic donations
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const randomAmount = Math.floor(Math.random() * 100) + 10;
-      setFunding(prev => Math.min(prev + randomAmount, goal));
-      setDonors(prev => prev + 1);
-    }, 8000 + Math.random() * 7000);
-
-    return () => clearInterval(interval);
-  }, [goal]);
 
   const handleDonation = (amount) => {
     setFunding(prev => Math.min(prev + amount, goal));
