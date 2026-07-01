@@ -27,6 +27,7 @@ const Crisis = () => {
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
  return (
+   <section id="Crisis">
     <div className="crisis-component-wrapper">
       <div className="crisis-container">
         {/* Carousel Section */}
@@ -43,7 +44,7 @@ const Crisis = () => {
           <button className="nav-btn prev" onClick={scrollPrev}>&lt;</button>
           <button className="nav-btn next" onClick={scrollNext}>&gt;</button>
         </div>
-
+            
         {/* Text and Action Section */}
         <div className="content-section">
           <div className="text-area">
@@ -56,6 +57,7 @@ const Crisis = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

@@ -38,11 +38,21 @@ html {
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background:  linear-gradient(180deg, var(--dark-blue) 0%, var(--light-blue) 50%,  var(--soft-blue) 100%);
+  background: #526177;
 
-  color: #d6cfc2;
+  color: #0b1b2b;
   overflow-x: hidden;
-  background-attachment: fixed;
+}
+
+/* Dark hero section */
+#hero {
+  background: var(--dark-blue);
+  color: #d6cfc2; /* keep hero text light */
+}
+
+/* Ensure crisis component remains dark */
+.crisis-component-wrapper {
+  background: var(--dark-blue);
 }
 
 /* Scrollbar Styling */

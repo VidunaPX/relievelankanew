@@ -74,7 +74,7 @@ const App = () => {
         <Intervention />
         <Impact />
         <AboutUs />
-        
+        <Future />
       </main>
       
       {/* Footer */}

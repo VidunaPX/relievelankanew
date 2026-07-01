@@ -38,3 +38,24 @@
   box-shadow: 0 0 25px rgba(145, 193, 255, 0.25), inset 0 0 20px rgba(74, 93, 155, 0.08);
   transform: scale(1.05);
 }
+
+.donate-hero-panel {
+  width: 100%;
+  max-width: 680px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 32px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.donate-hero-panel h2,
+.donate-hero-panel p {
+  position: relative;
+  z-index: 1;
+}
+
+.donate-panel-copy {
+  color: rgba(214, 207, 194, 0.9);
+}

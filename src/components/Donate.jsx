@@ -107,12 +107,14 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
       <div className="section-content max-w-7xl mx-auto px-6 py-24 w-full">
         <div className="grid gap-12 md:grid-cols-2 items-center">
           <div className="flex flex-col items-center text-center">
-            <h2 className="font-display text-3xl md:text-5xl text-white mb-4 leading-tight">
-              Be Part of the Change
-            </h2>
-            <p className="text-sm md:text-base mb-10 max-w-xl" style={{ color: 'rgba(214,207,194,0.45)' }}>
-              We're partnering with a community in the Yahangala region of Sri Lanka to ensure every child has the resources they need to learn and thrive. Your support helps provide School Recovery Kits filled with essential learning materials, empowering students and strengthening educational opportunities within the community.
-            </p>
+            <div className="donate-hero-panel mb-10">
+              <h2 className="font-display text-3xl md:text-5xl text-white mb-4 leading-tight">
+                Be Part of the Change
+              </h2>
+              <p className="text-sm md:text-base max-w-xl donate-panel-copy">
+                We're partnering with a community in the Yahangala region of Sri Lanka to ensure every child has the resources they need to learn and thrive. Your support helps provide School Recovery Kits filled with essential learning materials, empowering students and strengthening educational opportunities within the community.
+              </p>
+            </div>
 
             <div className="flex justify-center">
               <button 

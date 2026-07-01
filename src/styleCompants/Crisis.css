@@ -1,6 +1,6 @@
 .stat-card {
   height: 100%;
-  background: rgba(255,255,255,0.02);
+  background: rgba(209, 60, 60, 0.02);
   border: 1px solid rgba(255,255,255,0.05);
   border-radius: 16px;
   padding: 28px;
@@ -10,7 +10,7 @@
 
 .stat-card:hover {
   background: rgba(74,155,110,0.04);
-  border-color: rgba(74,155,110,0.15);
+  border-color: rgba(14, 226, 109, 0.15);
   transform: translateY(-4px);
 }
 
@@ -61,7 +61,9 @@
   border-radius: 32px; 
   margin: 2rem;       
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: visible;
 }
+
 
 .content-section {
   display: flex;
