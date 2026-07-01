@@ -56,9 +56,6 @@ const Crisis = () => {
             <h2>{SLIDE_DATA[selectedIndex].title}</h2>
             <p>{SLIDE_DATA[selectedIndex].desc}</p>
           </div>
-          <div className="action-area">
-            <button className="primary-btn">Start Action</button>
-          </div>
         </div>
       </div>
     </div>
