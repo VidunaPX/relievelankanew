@@ -1,0 +1,50 @@
+export const DONATION_MILESTONES = [
+  {
+    id: 'start',
+    amount: 0,
+    progress: 0,
+    side: 'right',
+    title: 'Campaign Launch',
+    goal: 'Mobilize the first wave of donors',
+    fact: 'Relieve Lanka was founded by Grade 11 students after floods disrupted Yahangala schools.',
+  },
+  {
+    id: 'supplies',
+    amount: 2500,
+    progress: 0.25,
+    side: 'left',
+    title: 'Emergency Supplies',
+    goal: 'Cover hidden student costs',
+    fact: 'Merit-based micro-grants address transport, materials, and daily meals.',
+  },
+  {
+    id: 'classrooms',
+    amount: 5000,
+    progress: 0.5,
+    side: 'right',
+    title: 'Classroom Recovery',
+    goal: 'Restore flood-damaged learning spaces',
+    fact: '90% of every donation reaches field programs through direct reimbursement.',
+  },
+  {
+    id: 'scholarships',
+    amount: 7500,
+    progress: 0.75,
+    side: 'left',
+    title: 'Scholarship Expansion',
+    goal: 'Scale grants to more at-risk students',
+    fact: 'Bi-weekly audits keep accountability transparent for every contributor.',
+  },
+  {
+    id: 'library',
+    amount: 10000,
+    progress: 1,
+    side: 'right',
+    title: 'Community Library',
+    goal: 'Establish a permanent 24/7 learning hub',
+    fact: 'The library becomes Yahangala\'s long-term educational anchor.',
+    isDestination: true,
+  },
+];
+
+export const DEFAULT_JOURNEY_GOAL = 10000;

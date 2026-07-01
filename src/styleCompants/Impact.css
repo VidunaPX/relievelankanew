@@ -1,2 +1,196 @@
-/* Impact component specific styles are already covered by global stat-card styles 
-   and utility classes. This file is kept for future customizations if needed. */
+.our-work {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 6rem 1.5rem;
+}
+
+.our-work__inner {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.our-work__eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  border: 1px solid rgba(117, 170, 255, 0.25);
+  background: rgba(117, 170, 255, 0.06);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.phase-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.image-column {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(117, 170, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 24px 48px rgba(5, 9, 86, 0.18);
+}
+
+.phase-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 1.25rem;
+}
+
+.content-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.phase-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.phase-button {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(214, 207, 194, 0.72);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.65rem 1.35rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.phase-button:hover {
+  border-color: rgba(117, 170, 255, 0.35);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.phase-button:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+}
+
+.phase-button--active {
+  background: linear-gradient(135deg, var(--light-blue), var(--accent));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(5, 9, 86, 0.28);
+}
+
+.text-area {
+  margin-bottom: 0.5rem;
+}
+
+.text-area__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.text-area__desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(214, 207, 194, 0.55);
+  max-width: 38rem;
+}
+
+.social-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.social-card:hover {
+  border-color: rgba(117, 170, 255, 0.28);
+  background: rgba(117, 170, 255, 0.08);
+  box-shadow: 0 12px 28px rgba(5, 9, 86, 0.2);
+}
+
+.social-card__platform {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+}
+
+.social-card__label {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(214, 207, 194, 0.82);
+}
+
+@media (max-width: 768px) {
+  .our-work {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .phase-section {
+    grid-template-columns: 1fr;
+  }
+
+  .image-column {
+    order: 1;
+  }
+
+  .content-column {
+    order: 2;
+  }
+
+  .phase-buttons {
+    margin-bottom: 1.25rem;
+  }
+
+  .social-cards {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phase-button,
+  .social-card {
+    transition: none;
+  }
+}

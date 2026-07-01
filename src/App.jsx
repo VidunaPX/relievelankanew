@@ -5,10 +5,11 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Crisis from './components/Crisis';
 import Intervention from './components/Intervention';
-import Impact from './components/Impact';
+import Impact from './components/OurWork';
 import AboutUs from './components/AboutUs';
 import Future from './components/Future';
 import Donate from './components/Donate';
+import DonationJourney from './components/DonationJourney';
 import Footer from './components/Footer';
 import useScrollObserver from './hooks/useScrollObserver';
 
@@ -59,6 +60,7 @@ const App = () => {
           donors={donors}
         />
         <Intervention />
+        <DonationJourney />
         <Impact />
         <AboutUs />
         <Future />
