@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styleCompants/Hero.css';
 import "../styles/global.css"
-import myVideo from '../assets/test.mp4';
+import myVideo from '../assets/hero_video.mp4';
 
 const Hero = ({ onShowDonationDetails }) => {
   const [menuOpen, setMenuOpen] = useState(false);
