@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../styleCompants/Crisis.css';
 import useEmblaCarousel from 'embla-carousel-react';
+import image1 from '../assets/image1.jpg';
+import image2 from '../assets/image2.jpg';
+import image3 from '../assets/image3.jpeg';
 
 const SLIDE_DATA = [
-  { title: "Header 1", desc: "Description for image 1" },
-  { title: "Header 2", desc: "Description for image 2" },
-  { title: "Header 3", desc: "Description for image 3" }
+  { title: "Interrupted Learning", desc: "Students in rural Yahangala communities face disrupted education due to limited school resources and ongoing recovery challenges, making consistent learning difficult.", image: image1 },
+  { title: "Limited Learning Materials", desc: "Many students do not have consistent access to basic supplies like notebooks, pens, and textbooks, which affects their ability to fully participate in class.", image: image2 },
+  { title: "Weather & Environmental Disruptions", desc: "Heavy rains, landslides, and seasonal weather conditions can interrupt schooling and strain already limited local infrastructure.", image: image3 }
 ];
 
 const Crisis = () => {
@@ -34,9 +37,11 @@ const Crisis = () => {
         <div className="embla">
           <div className="embla__viewport" ref={emblaRef}>
             <div className="embla__container">
-              {SLIDE_DATA.map((_, i) => (
+              {SLIDE_DATA.map((slide, i) => (
                 <div className="embla__slide" key={i}>
-                  <div className="stat-card">Image {i + 1}</div>
+                  <div className="stat-card">
+                    <img src={slide.image} alt={slide.title} className="slide-image" />
+                  </div>
                 </div>
               ))}
             </div>
