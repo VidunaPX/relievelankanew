@@ -46,13 +46,13 @@ body {
 
 /* Dark hero section */
 #hero {
-  background: var(--dark-blue);
+  background: #e4fcff;
   color: #d6cfc2; /* keep hero text light */
 }
 
 /* Ensure crisis component remains dark */
 .crisis-component-wrapper {
-  background: var(--dark-blue);
+  background: #526177;;
 }
 
 /* Scrollbar Styling */

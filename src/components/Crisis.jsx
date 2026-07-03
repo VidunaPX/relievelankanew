@@ -29,36 +29,38 @@ const Crisis = () => {
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
- return (
-   <section id="Crisis">
-    <div className="crisis-component-wrapper">
-      <div className="crisis-container">
-        {/* Carousel Section */}
-        <div className="embla">
-          <div className="embla__viewport" ref={emblaRef}>
-            <div className="embla__container">
-              {SLIDE_DATA.map((slide, i) => (
-                <div className="embla__slide" key={i}>
-                  <div className="stat-card">
-                    <img src={slide.image} alt={slide.title} className="slide-image" />
+  return (
+    <section id="Crisis" className="crisis-section">
+      <div className="crisis-component-wrapper">
+        <div className="crisis-container">
+          <div className="embla">
+            <div className="embla__viewport" ref={emblaRef}>
+              <div className="embla__container">
+                {SLIDE_DATA.map((slide, i) => (
+                  <div className="embla__slide" key={i}>
+                    <div className="stat-card">
+                      <img src={slide.image} alt={slide.title} className="slide-image" />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+            <button className="nav-btn prev" onClick={scrollPrev} aria-label="Previous slide">
+              &lt;
+            </button>
+            <button className="nav-btn next" onClick={scrollNext} aria-label="Next slide">
+              &gt;
+            </button>
           </div>
-          <button className="nav-btn prev" onClick={scrollPrev}>&lt;</button>
-          <button className="nav-btn next" onClick={scrollNext}>&gt;</button>
-        </div>
-            
-        {/* Text and Action Section */}
-        <div className="content-section">
-          <div className="text-area">
-            <h2>{SLIDE_DATA[selectedIndex].title}</h2>
-            <p>{SLIDE_DATA[selectedIndex].desc}</p>
+
+          <div className="content-section">
+            <div className="text-area">
+              <h2>{SLIDE_DATA[selectedIndex].title}</h2>
+              <p>{SLIDE_DATA[selectedIndex].desc}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </section>
   );
 };

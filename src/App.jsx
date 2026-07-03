@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './styles/global.css';
 import './styles/waterfall.css';
-import Header from './components/Header';
+
+import BackgroundEffects from './components/BackgroundEffects';
 import Hero from './components/Hero';
 import Crisis from './components/Crisis';
-import Intervention from './components/Intervention';
-import Impact from './components/OurWork';
+import OurWork from './components/OurWork';
 import AboutUs from './components/AboutUs';
-import Future from './components/Future';
 import Donate from './components/Donate';
-import DonationJourney from './components/DonationJourney';
+import PostSection from './components/postSection';
+import DonationHoriz from './components/DonationHoriz';
 import Footer from './components/Footer';
+
 import useScrollObserver from './hooks/useScrollObserver';
 
 const App = () => {
@@ -33,7 +34,6 @@ const App = () => {
   };
 
   const handleShowDonationDetails = () => {
-    // Scroll to donate section
     const donateSection = document.getElementById('donate');
     if (donateSection) {
       donateSection.scrollIntoView({ behavior: 'smooth' });
@@ -42,46 +42,41 @@ const App = () => {
 
   return (
     <div className="App">
+      {/* Background Effects */}
+      <BackgroundEffects />
+
       {/* Toast Notification */}
-      <div id="toast" className="toast" role="alert" aria-live="polite"></div>
-      
-      
+      <div
+        id="toast"
+        className="toast"
+        role="alert"
+        aria-live="polite"
+      ></div>
+
       {/* Main Content */}
       <main className="relative z-10">
-        {/* Components can be reordered here without breaking functionality */}
-        <Hero 
-          onShowDonationDetails={handleShowDonationDetails}
-        />
+        <Hero onShowDonationDetails={handleShowDonationDetails} />
+        <PostSection />
         <Crisis />
-        <Donate 
-          onDonation={handleDonation} 
-          funding={funding} 
-          goal={goal} 
+
+        {/* <DonationJourney /> */}
+
+        <DonationHoriz />
+
+        <OurWork />
+
+        <Donate
+          onDonation={handleDonation}
+          funding={funding}
+          goal={goal}
           donors={donors}
         />
-        <Intervention />
-        <DonationJourney />
-        <Impact />
-        <AboutUs />
-        <Future />
+
+         {/* <AboutUs /> */}
       </main>
-      
+
       {/* Footer */}
       <Footer />
-      
-      {/* Floating Donate Button 
-      <button 
-        className="floating-donate" 
-        onClick={() => {
-          const donateSection = document.getElementById('donate');
-          if (donateSection) {
-            donateSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }} 
-        aria-label="Scroll to donate section"
-      >
-        <i className="fa-solid fa-droplet"></i>
-      </button>*/}
     </div>
   );
 };

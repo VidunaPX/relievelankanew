@@ -133,32 +133,43 @@ const BackgroundEffects = () => {
     const render = () => {
       ctx.clearRect(0, 0, W, H);
 
-      const drawLayer = (imgRef, speed, color, yOffset) => {
-    if (!imgRef.current.complete) return;
-    
-      const img = imgRef.current;
-      const aspect = img.height / img.width;
-      const mWidth = W;
-      const mHeight = W * aspect;
-    
-      // Calculate Y based on scroll speed
-      const mountY = (H - mHeight) + (window.scrollY * speed) + yOffset;
+      // Determine reveal progress based on the Donate section position.
+      const donateEl = document.getElementById('donate');
+      let revealProgress = 0;
+      if (donateEl) {
+        const donateTop = donateEl.getBoundingClientRect().top + window.scrollY;
+        const startReveal = Math.max(0, donateTop - window.innerHeight);
+        const range = Math.max(1, window.innerHeight);
+        revealProgress = Math.min(Math.max((window.scrollY - startReveal) / range, 0), 1);
+      }
 
-      // Draw the silhouette
-      ctx.drawImage(img, 0, mountY+200, mWidth, mHeight);
-    
-      // Tint the silhouette
-      ctx.globalCompositeOperation = "source-in";
-      ctx.fillStyle = color;
-      ctx.fillRect(0, 0, W, H);
-    
-      // VERY IMPORTANT: Reset so the next layer actually shows up!
-      ctx.globalCompositeOperation = "source-over";
-  };
-      drawLayer(mountImg4Ref, 0.05, "rgba(255, 255, 255, 0.2)", 100); // Furthest/Slowest
-      drawLayer(mountImg3Ref, 0.1,  "rgba(255, 255, 255, 0.4)", 150);
-      drawLayer(mountImg2Ref, 0.2,  "rgba(255, 255, 255, 0.6)", 200);
-      drawLayer(mountImgRef,  0.3,  "rgba(255, 255, 255, 0.8)", 250);
+      const drawLayer = (imgRef, speed, color, yOffset) => {
+         if (!imgRef.current || !imgRef.current.complete) return;
+
+        const img = imgRef.current;
+        const aspect = img.height / img.width;
+        const mWidth = W;
+        const mHeight = W * aspect;
+
+  // Use the canvas height (H) which is now limited to 70vh
+  // This anchors the mountains to the bottom of the canvas element
+        const groundedY = H - mHeight - yOffset;
+        const hiddenY = H + 200; 
+
+        const t = revealProgress;
+        const smooth = t * t * (3 - 2 * t);
+        const parallax = (window.scrollY * speed) * 0.08;
+
+        const mountY = hiddenY * (1 - smooth) + (groundedY - parallax) * smooth;
+
+         ctx.drawImage(img, 0, mountY, mWidth, mHeight);
+  // ... rest of your tint logic remains the same
+};
+
+      drawLayer(mountImg4Ref, 0.05, 'rgba(255, 255, 255, 0.2)', 100); // Furthest/Slowest
+      drawLayer(mountImg3Ref, 0.1, 'rgba(255, 255, 255, 0.4)', 150);
+      drawLayer(mountImg2Ref, 0.2, 'rgba(255, 255, 255, 0.6)', 200);
+      drawLayer(mountImgRef, 0.3, 'rgba(255, 255, 255, 0.8)', 250);
 
       // Waterfall paused
       // updateWaterfall();
@@ -190,8 +201,10 @@ const BackgroundEffects = () => {
         className={themeClass} 
         style={{ 
           position: 'fixed', 
-          top: 0, 
+          top: '30vh', /* Moves the canvas start down by 30% of the viewport height */
           left: 0, 
+          width: '100%',
+          height: '70vh', /* Adjust so it covers the remaining space */
           zIndex: 10,
           pointerEvents: 'none' 
         }}

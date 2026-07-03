@@ -76,7 +76,7 @@ const DonationJourney = ({
   const markerRefs = useRef([]);
   const scrollTriggerRef = useRef(null);
 
-  const safeMilestones = milestones?.length ? milestones : DONATION_MILESTONES;
+  const safeMilestones = milestones && milestones.length ? milestones : DONATION_MILESTONES;
 
   const cardMilestones = useMemo(
     () => safeMilestones.filter((milestone) => !milestone.isDestination && milestone.progress > 0),
@@ -277,28 +277,17 @@ const DonationJourney = ({
             preserveAspectRatio="xMidYMid meet"
             aria-hidden="true"
           >
-            <defs>
-              <linearGradient id={`${sectionId}-hillGradient`} x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(52, 80, 135, 0.42)" />
-                <stop offset="100%" stopColor="rgba(117, 170, 255, 0.2)" />
-              </linearGradient>
-              <linearGradient id={`${sectionId}-roadGradient`} x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ded8a5" />
-                <stop offset="100%" stopColor="#fbfacc" />
-              </linearGradient>
-            </defs>
-
             <path
               className="donation-journey__hill-fill"
               d={`${HILL_PATH} L 820 480 L 60 480 Z`}
-              fill={`url(#${sectionId}-hillGradient)`}
+              fill="#e8ecf0"
             />
             <path
               ref={pathRef}
               id={`${sectionId}-path`}
               className="donation-journey__hill-path"
               d={HILL_PATH}
-              stroke={`url(#${sectionId}-roadGradient)`}
+              fill="none"
             />
           </svg>
 

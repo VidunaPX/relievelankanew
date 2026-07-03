@@ -102,12 +102,49 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
     }
   };
 
+  // Align the background canvas to the donate section and only show it while donate is visible
+  useEffect(() => {
+    const canvas = document.getElementById('waterfallCanvas');
+    if (!canvas) return;
+
+    canvas.style.transition = 'opacity 420ms ease, top 420ms ease';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100vh';
+
+    const updateCanvasBounds = () => {
+      const donateEl = document.getElementById('donate');
+      if (!donateEl) return;
+      const rect = donateEl.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+      canvas.style.opacity = isVisible ? '1' : '0';
+      canvas.style.top = `${rect.bottom - window.innerHeight}px`;
+    };
+
+    updateCanvasBounds();
+    window.addEventListener('scroll', updateCanvasBounds, { passive: true });
+    window.addEventListener('resize', updateCanvasBounds);
+
+    return () => {
+      window.removeEventListener('scroll', updateCanvasBounds);
+      window.removeEventListener('resize', updateCanvasBounds);
+      canvas.style.opacity = '';
+      canvas.style.top = '';
+      canvas.style.left = '';
+      canvas.style.width = '';
+      canvas.style.height = '';
+      canvas.style.pointerEvents = '';
+    };
+  }, []);
+
   return (
-    <section id="donate" className="flex items-center relative" style={{ minHeight: '100vh' }}>
+    <section id="donate" className="flex items-center relative" style={{ minHeight: '100vh', backgroundColor: 'transparent' }}>
       <div className="section-content max-w-7xl mx-auto px-6 py-24 w-full">
         <div className="grid gap-12 md:grid-cols-2 items-center">
           <div className="flex flex-col items-center text-center">
-            <div className="donate-hero-panel mb-10">
+            <div className="donate-hero-panel mb-10" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', backdropFilter: 'blur(10px)' }}>
               <h2 className="font-display text-3xl md:text-5xl text-white mb-4 leading-tight">
                 Be Part of the Change
               </h2>
@@ -117,11 +154,12 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
             </div>
 
             <div className="flex justify-center">
-              <a 
-                href="https://gofund.me/f1c00af39" 
-                target="_blank" 
+              <a
+                href="https://gofund.me/f1c00af39"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="donate-cta inline-block"
+                style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', padding: '10px 18px', borderRadius: '12px' }}
               >
                 Donate on GoFundMe
                 <i className="fa-solid fa-water ml-2 text-sm"></i>

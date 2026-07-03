@@ -33,7 +33,12 @@ const OurWork = ({
   const currentPhase = safePhases[activePhase] ?? safePhases[0];
 
   return (
-    <section id={sectionId} className="our-work" aria-labelledby={`${sectionId}-heading`}>
+    <section
+      id={sectionId}
+      className="our-work"
+      aria-labelledby={`${sectionId}-heading`}
+      style={{ backgroundColor: '#d9d9d9' }}
+    >
       <div className="our-work__inner">
         <div className="phase-section">
           <figure className="image-column">

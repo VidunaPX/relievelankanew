@@ -1,0 +1,55 @@
+.post-section {
+  padding: 4rem 2rem;
+  background-color: #e4fcff; /* Matches your light blue theme */
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.post-container {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Left Box: Social Media Placeholder */
+.post-media {
+  background-color: #d1c4e9; /* Light purple box */
+  padding: 20px;
+  border-radius: 16px;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-image {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Right Box: Text */
+.post-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  flex: 1;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .post-container {
+    flex-direction: column;
+  }
+  .post-media {
+    width: 100%;
+  }
+}

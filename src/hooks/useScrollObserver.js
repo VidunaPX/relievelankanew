@@ -30,16 +30,16 @@ const useScrollObserver = () => {
       
       const atmosphere = document.getElementById('atmosphere');
       if (atmosphere) {
-        // Change atmosphere color based on scroll progress
         if (scrollProgress < 0.25) {
-          atmosphere.style.background = 'radial-gradient(ellipse at 50% 60%, rgba(30,18,10,0.15), transparent 60%)';
+          atmosphere.style.background = 'radial-gradient(ellipse at 50% 70%, rgba(52, 80, 135, 0.18), transparent 65%)';
         } else if (scrollProgress < 0.5) {
-          atmosphere.style.background = 'radial-gradient(ellipse at 50% 60%, rgba(15,26,13,0.15), transparent 60%)';
+          atmosphere.style.background = 'radial-gradient(ellipse at 50% 70%, rgba(5, 9, 86, 0.2), transparent 65%)';
         } else if (scrollProgress < 0.75) {
-          atmosphere.style.background = 'radial-gradient(ellipse at 50% 60%, rgba(74,155,110,0.15), transparent 60%)';
+          atmosphere.style.background = 'radial-gradient(ellipse at 50% 70%, rgba(117, 170, 255, 0.12), transparent 65%)';
         } else {
-          atmosphere.style.background = 'radial-gradient(ellipse at 50% 60%, rgba(201,168,76,0.15), transparent 60%)';
+          atmosphere.style.background = 'radial-gradient(ellipse at 50% 70%, rgba(222, 216, 165, 0.1), transparent 65%)';
         }
+        atmosphere.style.opacity = '1';
       }
     };
 

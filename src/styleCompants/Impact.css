@@ -1,15 +1,21 @@
+/* --- UPDATED IMPACT.CSS --- */
+
+/* 1. Remove horizontal padding from the section wrapper to allow bleeding */
 .our-work {
   min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
-  padding: 6rem 1.5rem;
+  padding: 6rem 0; 
+  overflow-x: hidden; /* Ensures no horizontal scroll bar appears */
 }
 
+/* 2. Content container remains centered and constrained */
 .our-work__inner {
   width: 100%;
   max-width: 72rem;
   margin: 0 auto;
+  padding: 0 1.5rem; /* Restores side padding for content readability */
 }
 
 .our-work__eyebrow {
@@ -32,16 +38,17 @@
   align-items: center;
 }
 
+/* 3. Negative margin pulls this element to the browser's left edge */
 .image-column {
   margin: 0;
   position: relative;
   overflow: hidden;
-  border-radius: 1.25rem;
-  border: 1px solid rgba(117, 170, 255, 0.15);
-  background: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 24px 48px rgba(5, 9, 86, 0.18);
+  border-radius: 0 1.25rem 1.25rem 0; /* Rounded only on the right */
+  
+  /* THIS IS THE MAGIC LINE */
+  /* It pulls the image to the left edge of the viewport */
+  margin-left: calc((100vw - 72rem) / -2); 
 }
-
 .phase-image {
   display: block;
   width: 100%;
@@ -162,6 +169,7 @@
   color: rgba(214, 207, 194, 0.82);
 }
 
+/* 4. Reset on mobile so the layout stacks naturally */
 @media (max-width: 768px) {
   .our-work {
     padding: 4.5rem 1.25rem;
@@ -172,6 +180,8 @@
   }
 
   .image-column {
+    margin-left: 0;
+    border-radius: 1.25rem;
     order: 1;
   }
 
