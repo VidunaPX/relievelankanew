@@ -45,18 +45,28 @@ const Crisis = () => {
                 ))}
               </div>
             </div>
-            <button className="nav-btn prev" onClick={scrollPrev} aria-label="Previous slide">
-              &lt;
-            </button>
-            <button className="nav-btn next" onClick={scrollNext} aria-label="Next slide">
-              &gt;
-            </button>
           </div>
 
           <div className="content-section">
-            <div className="text-area">
-              <h2>{SLIDE_DATA[selectedIndex].title}</h2>
-              <p>{SLIDE_DATA[selectedIndex].desc}</p>
+            <div className="content-row">
+              <div className="nav-panel">
+                <div className="buttons-wrapper">
+                  <button className="nav-btn prev" onClick={scrollPrev} aria-label="Previous slide">
+                    &lt;
+                  </button>
+                  <button className="nav-btn next" onClick={scrollNext} aria-label="Next slide">
+                    &gt;
+                  </button>
+                </div>
+                <h3 className="content-heading">What we tackle</h3>
+              </div>
+              <div className="vertical-divider" aria-hidden="true" />
+              <div className="text-area">
+                <h2>{SLIDE_DATA[selectedIndex].title}</h2>
+                <div className="desc-box">
+                  <p>{SLIDE_DATA[selectedIndex].desc}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 .donation-journey {
   position: relative;
   width: 100%;
+  background: transparent;
 }
 
 .donation-journey__pin {
@@ -10,7 +11,7 @@
   grid-template-rows: auto minmax(0, 1fr);
   padding: 1rem 1.5rem 1.25rem;
   box-sizing: border-box;
-  background: #ffffff;
+  background: transparent;
 }
 
 .donation-journey__header {
