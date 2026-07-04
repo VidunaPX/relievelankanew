@@ -21,6 +21,11 @@
   --soft-blue: #e4fcff;
   --gold-accent: #ded8a5;
   --gold-light: #fbfacc;
+
+  /* Shared layout rhythm: keeps text boxes lined up site-wide */
+  --site-content-width: 72rem;
+  --site-gutter: clamp(1rem, 4vw, 3rem);
+  --section-block-padding: clamp(4rem, 8vw, 7rem);
 }
 
 /* Base Styles & Resets */
@@ -42,6 +47,28 @@ body {
 
   color: #0b1b2b;
   overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Shared content rail for the website's main text bounding boxes. */
+:where(.section-content, .content-section, .our-work__inner, .carousel-shell) {
+  width: min(var(--site-content-width), calc(100% - (var(--site-gutter) * 2)));
+  max-width: var(--site-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+:where(.section-content, .content-section, .our-work__inner) {
+  text-align: left;
+}
+
+:where(h1, h2, h3, p) {
+  text-wrap: pretty;
+}
+
+:where(p) {
+  max-width: 68ch;
 }
 
 img,

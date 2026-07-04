@@ -56,12 +56,12 @@ const DonationHoriz = () => {
 
   return (
     <section ref={sectionRef} className="donation-section" style={{ backgroundColor: 'var(--dark-blue)', color: '#f8fbff' }}>
-      <div className="absolute top-8 right-8 z-20 text-right">
+      <div className="donation-heading-panel absolute top-8 right-8 z-20 text-right">
         <h2 className="font-serif text-4xl font-bold text-white">Goals & Objectives</h2>
       </div>
 
       {/* TOP LEFT WIDE CONTEXT CARD */}
-      <div className="absolute top-8 left-8 z-40 w-[1000px] h-[800px]">
+      <div className="donation-context-panel absolute top-8 left-8 z-40 w-[1000px] h-[800px]">
         {MILESTONES.map((m, idx) => (
           <div key={m.context} className={`p-4 bg-white/5 backdrop-blur-md rounded-lg border border-white/10 transition-opacity duration-500 ${idx === activeIdx ? "opacity-100" : "opacity-0 absolute inset-0"}`}>
             <div className="flex items-center gap-2 text-blue-400 font-bold uppercase tracking-widest text-xs mb-1">
@@ -73,7 +73,7 @@ const DonationHoriz = () => {
       </div>
 
       {/* BOTTOM RIGHT DETAIL CARDS */}
-      <div className="absolute bottom-8 right-8 z-40 w-80">
+      <div className="donation-detail-panel absolute bottom-8 right-8 z-40 w-80">
         {MILESTONES.map((m, idx) => {
           const isActive = idx === activeIdx || (activeIdx === MILESTONES.length - 1 && idx === MILESTONES.length - 1);
           return (

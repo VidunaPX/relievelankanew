@@ -20,6 +20,7 @@
   --hero-title-size: clamp(4.2rem, 3.4vw, 4.6rem);
   --hero-cta-size: clamp(1rem, 1.2vw, 1.55rem);
   --hero-btn-size: clamp(0.95rem, 1vw, 1.15rem);
+  --hero-content-width: min(var(--site-content-width), calc(100% - (var(--site-gutter) * 2)));
   width: 100%;
   max-width: none;
   height: 100%;
@@ -108,13 +109,16 @@
 /* Centered Content Overlay */
 .hero-content {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--hero-content-width);
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start; /* Aligns everything to the left */
-  padding-left: clamp(1rem, calc(2.2rem * var(--hero-scale)), 5rem);      /* Responsive breathing room */
-  padding-right: var(--hero-pad-x);
+  padding: 0;      /* uses the shared global content rail */
   text-align: left;
   gap: clamp(1.5rem, 4vw, 4rem);               /* Responsive gap */
 }
@@ -183,10 +187,13 @@
   }
 
   .hero-content {
+    left: 50%;
+    width: min(42rem, calc(100% - 2rem));
+    transform: translateX(-50%);
     align-items: center;
     text-align: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0;
+    padding-right: 0;
     gap: 1.25rem;
   }
 
@@ -241,8 +248,9 @@
   }
 
   .hero-content {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    width: min(42rem, calc(100% - 2rem));
+    padding-left: 0;
+    padding-right: 0;
     gap: 1rem;
     align-items: center;
     text-align: center;
@@ -311,8 +319,9 @@
   }
 
   .hero-content {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    width: min(100%, calc(100% - 1.5rem));
+    padding-left: 0;
+    padding-right: 0;
     gap: 0.75rem;
   }
 }

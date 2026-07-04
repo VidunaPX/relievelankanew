@@ -12,10 +12,7 @@
 
 /* 2. Content container remains centered and constrained */
 .our-work__inner {
-  width: 100%;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 0 1.5rem; /* Restores side padding for content readability */
+  padding: 0; /* Width and side gutters are handled by the global content rail */
 }
 
 .our-work__eyebrow {
@@ -47,7 +44,7 @@
   
   /* THIS IS THE MAGIC LINE */
   /* It pulls the image to the left edge of the viewport */
-  margin-left: calc((100vw - 72rem) / -2); 
+  margin-left: calc((100vw - var(--site-content-width)) / -2); 
 }
 .phase-image {
   display: block;
@@ -172,7 +169,7 @@
 /* 4. Reset on mobile so the layout stacks naturally */
 @media (max-width: 768px) {
   .our-work {
-    padding: 4.5rem 1.25rem;
+    padding: 4.5rem 0;
   }
 
   .phase-section {
