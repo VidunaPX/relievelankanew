@@ -37,9 +37,11 @@ const BackgroundEffects = () => {
       spawnY: -400, 
     };
 
+    const getViewportHeight = () => window.visualViewport?.height || window.innerHeight;
+
     const resizeCanvas = () => {
       W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
+      H = canvas.height = getViewportHeight();
     };
 
     // --- Waterfall Logic ---
@@ -133,14 +135,13 @@ const BackgroundEffects = () => {
     const render = () => {
       ctx.clearRect(0, 0, W, H);
 
-      // Determine reveal progress based on the Donate section position.
+      // Determine reveal progress based on the Donate section's viewport position.
       const donateEl = document.getElementById('donate');
       let revealProgress = 0;
       if (donateEl) {
-        const donateTop = donateEl.getBoundingClientRect().top + window.scrollY;
-        const startReveal = Math.max(0, donateTop - window.innerHeight);
-        const range = Math.max(1, window.innerHeight);
-        revealProgress = Math.min(Math.max((window.scrollY - startReveal) / range, 0), 1);
+        const rect = donateEl.getBoundingClientRect();
+        const range = Math.max(1, getViewportHeight());
+        revealProgress = Math.min(Math.max((range - rect.top) / range, 0), 1);
       }
 
       const drawLayer = (imgRef, _speed, yOffset) => {
@@ -192,9 +193,11 @@ const BackgroundEffects = () => {
     const animationId = requestAnimationFrame(render);
 
     window.addEventListener('resize', resizeCanvas);
+    window.visualViewport?.addEventListener('resize', resizeCanvas);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      window.visualViewport?.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationId);
     };
   }, []);

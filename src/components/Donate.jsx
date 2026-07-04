@@ -40,29 +40,35 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
     const canvas = document.getElementById('waterfallCanvas');
     if (!canvas) return;
 
+    const getViewportHeight = () => window.visualViewport?.height || window.innerHeight;
+
     canvas.style.transition = 'opacity 420ms ease, top 420ms ease';
     canvas.style.pointerEvents = 'none';
     canvas.style.left = '0';
     canvas.style.width = '100%';
-    canvas.style.height = '100vh';
+    canvas.style.height = `${getViewportHeight()}px`;
+    canvas.style.top = '0';
 
     const updateCanvasBounds = () => {
       const donateEl = document.getElementById('donate');
       if (!donateEl) return;
       const rect = donateEl.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+      const viewportHeight = getViewportHeight();
+      const isVisible = rect.top < viewportHeight && rect.bottom > 0;
 
       canvas.style.opacity = isVisible ? '1' : '0';
-      canvas.style.top = `${rect.bottom - window.innerHeight}px`;
+      canvas.style.height = `${viewportHeight}px`;
     };
 
     updateCanvasBounds();
     window.addEventListener('scroll', updateCanvasBounds, { passive: true });
     window.addEventListener('resize', updateCanvasBounds);
+    window.visualViewport?.addEventListener('resize', updateCanvasBounds);
 
     return () => {
       window.removeEventListener('scroll', updateCanvasBounds);
       window.removeEventListener('resize', updateCanvasBounds);
+      window.visualViewport?.removeEventListener('resize', updateCanvasBounds);
     };
   }, []);
 
