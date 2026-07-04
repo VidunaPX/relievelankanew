@@ -21,8 +21,8 @@ const Header = () => {
   };
 
   return (
-    // Added 'w-full' and ensured padding 'px-6' handles the breathing room on the edges
-    <nav className="fixed top-0 left-0 w-full z-50 px-20 py-4" style={{ background: 'linear-gradient(to bottom, rgba(8,8,6,0.85), transparent)' }}>
+    // Responsive padding: smaller on mobile, larger on md+ screens
+    <nav className="fixed top-0 left-0 w-full z-50 px-6 md:px-20 py-4" style={{ background: 'linear-gradient(to bottom, rgba(8,8,6,0.85), transparent)' }}>
       {/* CHANGE 1: Removed 'max-w-6xl mx-auto' to allow the content to hit the left/right edges.
           CHANGE 2: Kept 'justify-between' so the logo stays left and the nav links stay right.
       */}
@@ -33,7 +33,7 @@ const Header = () => {
           <img 
             src="relieveLankalogo.png" 
             alt="Relieve Lanka Logo" 
-            className="h-16 w-16 md:h-18 md:w-18 object-contain" // Adjusted size for better fit in header
+            className="h-12 w-12 md:h-16 md:w-16 object-contain" // smaller on mobile, larger on md+
           />
           <span className="font-display text-xl tracking-tight uppercase">Relieve Lanka</span>
         </a>
