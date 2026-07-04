@@ -100,7 +100,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  transform: translateY(80px);
+  transform: translateY(5%);
 }
 
 .donation-detail-panel > div {
@@ -127,6 +127,7 @@
   width: 100%;
   fill: rgba(255, 255, 255, 0.05); /* Very subtle path fill */
   pointer-events: none;
+  transform: translateX(-150px);
 }
 
 .milestone-marker {

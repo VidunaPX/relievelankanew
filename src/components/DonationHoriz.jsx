@@ -120,8 +120,8 @@ const DonationHoriz = () => {
       
       <div ref={mountainsRef} className="donation-mountains" aria-hidden="true">
         <svg viewBox="0 0 100 120" preserveAspectRatio="none">
-          <path d="M0,100 L8,74 L16,82 L24,61 L33,73 L40,54 L49,67 L58,41 L68,58 L78,38 L86,50 L94,27 L100,100 L100,120 L0,120 Z" fill="rgba(8, 28, 54, 0.9)" />
-          <path d="M0,100 L10,81 L18,90 L26,70 L35,83 L44,63 L53,76 L63,53 L73,70 L84,44 L92,55 L100,100 L100,120 L0,120 Z" fill="rgba(5, 20, 42, 0.95)" />
+          <path d="M0,30 L8,74 L16,82 L24,61 L33,73 L40,54 L49,67 L58,41 L68,58 L78,38 L86,50 L94,27 L100,60 L100,120 L0,120 Z" fill="rgba(8, 28, 54, 0.9)" />
+          <path d="M0,30 L10,81 L18,90 L26,70 L35,83 L44,63 L53,76 L63,53 L73,70 L84,44 L92,55 L100,60 L100,120 L0,120 Z" fill="rgba(5, 20, 42, 0.95)" />
         </svg>
       </div>
 
