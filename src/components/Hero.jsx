@@ -24,19 +24,8 @@ const Hero = ({ onShowDonationDetails }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const [isMobileNarrow, setIsMobileNarrow] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobileNarrow(window.innerWidth <= 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  const sectionStyle = isMobileNarrow ? { minHeight: '40vh', height: 'auto' } : undefined;
-
   return (
-    <section id="hero" className="relative" style={sectionStyle}>
+    <section id="hero" className="relative">
       <div className="hero-video-shell">
         <div className="video-background">
           <img className="video-logo" src="/relieveLankalogo.png" alt="Relieve Lanka logo" />

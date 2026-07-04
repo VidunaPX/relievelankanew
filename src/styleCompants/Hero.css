@@ -188,12 +188,16 @@
   }
 
   .video-background {
-    height: auto;
+    height: 50vh;
+    min-height: 50vh;
   }
 
   .hero-video {
-    max-height: 40vh;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    transform: scale(1.08);
+    transform-origin: center center;
   }
 
   .video-logo {
@@ -212,19 +216,19 @@
   }
 
   .hero-title {
-    font-size: clamp(1.2rem, 4.2vw, 1.8rem) !important;
+    font-size: clamp(1.6rem, 6.5vw, 3rem) !important;
     max-width: 42ch;
     line-height: 1.12;
   }
 
   .cta-text {
-    font-size: clamp(0.85rem, 2.6vw, 1rem) !important;
+    font-size: clamp(1rem, 3.2vw, 1.15rem) !important;
   }
 }
 
 @media (max-width: 480px) {
   .hero-video-shell {
-    min-height: 32vh;
+    min-height: 36vh;
     padding: 8px 6px;
   }
 
@@ -249,9 +253,9 @@
   }
 
   .hero-title {
-    font-size: clamp(1rem, 4.5vw, 1.3rem) !important;
-    line-height: 1.08;
-    margin-bottom: 0.15rem;
+    font-size: clamp(1.1rem, 6.5vw, 1.8rem) !important;
+    line-height: 1.06;
+    margin-bottom: 0.12rem;
   }
 
   .cta-button-white {
@@ -260,14 +264,43 @@
   }
 
   .hero-video {
-    max-height: 32vh;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.12);
   }
 
   .hero-content {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     gap: 0.75rem;
+  }
+}
+
+/* Enforce horizontal crop and ensure hero takes ~half of viewport on mobile */
+@media (max-width: 768px) {
+  #hero {
+    min-height: 50vh !important;
+    max-height: 60vh;
+  }
+
+  .hero-video-shell {
+    min-height: 50vh !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  .video-background {
+    height: 50vh !important;
+    overflow: hidden;
+  }
+
+  .hero-video {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
   }
 }
 
