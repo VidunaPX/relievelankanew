@@ -28,26 +28,35 @@ const DonationHoriz = () => {
         vh: window.innerHeight
       });
 
+      const setBusPosition = (progress = 0) => {
+        const p = Math.min(Math.max(progress, 0), 1);
+        const { distance, trackW, vh } = getMetrics();
+        const seg = p * (MILESTONES.length - 1);
+        const i = Math.min(Math.floor(seg), MILESTONES.length - 2);
+        const t = seg - i;
+        const a = MILESTONES[i], b = MILESTONES[i + 1];
+
+        setActiveIdx(Math.min(Math.floor(p * MILESTONES.length), MILESTONES.length - 1));
+        gsap.set(trackRef.current, { x: -distance * p });
+        gsap.set(busRef.current, {
+          x: (a.x + (b.x - a.x) * t) * trackW,
+          y: (a.y + (b.y - a.y) * t) * vh - 20,
+          rotation: Math.atan2((b.y - a.y) * vh, (b.x - a.x) * trackW) * (180 / Math.PI),
+          autoAlpha: 1
+        });
+      };
+
+      setBusPosition(0);
+
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
         end: () => `+=${getMetrics().distance + 1000}`,
         pin: true,
         scrub: 1,
+        onRefresh: (self) => setBusPosition(self.progress),
         onUpdate: (self) => {
-          const p = self.progress;
-          const { distance, trackW, vh } = getMetrics();
-          setActiveIdx(Math.min(Math.floor(p * MILESTONES.length), MILESTONES.length - 1));
-          gsap.set(trackRef.current, { x: -distance * p });
-          const seg = p * (MILESTONES.length - 1);
-          const i = Math.min(Math.floor(seg), MILESTONES.length - 2);
-          const t = seg - i;
-          const a = MILESTONES[i], b = MILESTONES[i + 1];
-          gsap.set(busRef.current, { 
-            x: (a.x + (b.x - a.x) * t) * trackW, 
-            y: (a.y + (b.y - a.y) * t) * vh - 20, 
-            rotation: Math.atan2((b.y - a.y) * vh, (b.x - a.x) * trackW) * (180 / Math.PI) 
-          });
+          setBusPosition(self.progress);
         }
       });
     }, sectionRef);

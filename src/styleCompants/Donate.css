@@ -65,9 +65,27 @@
   align-items: center;
 }
 
+#donate .grid > div {
+  min-width: 0;
+}
+
+#donate .grid > div:first-child {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+#donate .grid > div:last-child {
+  align-self: center;
+}
+
 #donate .donate-hero-panel + .flex,
 #donate .donate-cta {
   margin-left: 0;
+}
+
+#donate .donate-hero-panel + .flex {
+  justify-content: flex-start !important;
+  width: 100%;
 }
 
 #donate .progress-ring-container {

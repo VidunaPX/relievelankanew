@@ -20,19 +20,19 @@
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-bright);
-  border: 1px solid rgba(117, 170, 255, 0.25);
-  background: rgba(117, 170, 255, 0.06);
+  color: var(--dark-blue);
+  border: 1px solid rgba(5, 9, 86, 0.24);
+  background: rgba(5, 9, 86, 0.08);
   border-radius: 999px;
   padding: 0.35rem 0.85rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
 }
 
 .phase-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  align-items: stretch;
 }
 
 /* 3. Negative margin pulls this element to the browser's left edge */
@@ -44,7 +44,7 @@
   
   /* THIS IS THE MAGIC LINE */
   /* It pulls the image to the left edge of the viewport */
-  margin-left: calc((100vw - var(--site-content-width)) / -2); 
+  margin-left: min(0px, calc((100vw - var(--site-content-width)) / -2)); 
 }
 .phase-image {
   display: block;
@@ -57,6 +57,9 @@
 .content-column {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.25rem;
   min-width: 0;
 }
 
@@ -64,14 +67,14 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 .phase-button {
   appearance: none;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(214, 207, 194, 0.72);
+  border: 1px solid rgba(5, 9, 86, 0.28);
+  background: rgba(255, 255, 255, 0.46);
+  color: #182044;
   font: inherit;
   font-size: 0.9rem;
   font-weight: 500;
@@ -88,8 +91,9 @@
 }
 
 .phase-button:hover {
-  border-color: rgba(117, 170, 255, 0.35);
-  color: #fff;
+  border-color: rgba(5, 9, 86, 0.45);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--dark-blue);
   transform: translateY(-1px);
 }
 
@@ -106,21 +110,21 @@
 }
 
 .text-area {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 
 .text-area__title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.75rem, 3vw, 2.75rem);
   line-height: 1.15;
-  color: #fff;
+  color: var(--dark-blue);
   margin-bottom: 1rem;
 }
 
 .text-area__desc {
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(214, 207, 194, 0.55);
+  color: #182044;
   max-width: 38rem;
 }
 
@@ -128,7 +132,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 0.75rem;
+  width: 100%;
 }
 
 .social-card {
@@ -137,8 +142,8 @@
   gap: 0.45rem;
   padding: 1rem 1.1rem;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(5, 9, 86, 0.16);
+  background: rgba(255, 255, 255, 0.38);
   color: inherit;
   text-decoration: none;
   transition:
@@ -148,8 +153,8 @@
 }
 
 .social-card:hover {
-  border-color: rgba(117, 170, 255, 0.28);
-  background: rgba(117, 170, 255, 0.08);
+  border-color: rgba(5, 9, 86, 0.34);
+  background: rgba(255, 255, 255, 0.68);
   box-shadow: 0 12px 28px rgba(5, 9, 86, 0.2);
 }
 
@@ -157,13 +162,13 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent-bright);
+  color: var(--dark-blue);
 }
 
 .social-card__label {
   font-size: 0.92rem;
   line-height: 1.45;
-  color: rgba(214, 207, 194, 0.82);
+  color: #182044;
 }
 
 /* 4. Reset on mobile so the layout stacks naturally */

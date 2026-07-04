@@ -140,7 +140,7 @@
   display: flex;
   align-items: center; 
   gap: clamp(0.75rem, 4vw, 1.25rem);          
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .cta-text {

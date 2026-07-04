@@ -77,7 +77,7 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
       <div className="section-content max-w-7xl mx-auto px-6 py-24 w-full">
         <div className="grid gap-12 md:grid-cols-2 items-center">
           {/* Left Panel */}
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-start text-left">
             <div className="donate-hero-panel mb-10" style={{ background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.14)', backdropFilter: 'blur(20px)' }}>
               <h2 className="font-display text-3xl md:text-5xl text-white mb-4 leading-tight">
                 Be Part of the Change
@@ -87,7 +87,7 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
               </p>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-start">
               <a
                 href="https://gofund.me/f1c00af39"
                 target="_blank"
@@ -125,7 +125,7 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
 
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                 <span className="font-display text-5xl text-white">{fundPercent}%</span>
-                <span className="text-sm mt-2" style={{ color: 'rgba(214,207,194,0.4)' }}>of goal reached</span>
+                <span className="text-sm mt-2" style={{ color: 'rgba(255,255,255,0.78)' }}>of goal reached</span>
               </div>
             </div>
           </div>
