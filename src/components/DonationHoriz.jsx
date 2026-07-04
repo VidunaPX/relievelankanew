@@ -7,11 +7,11 @@ import '../styleCompants/DonationHoriz.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const MILESTONES = [
-  { x: 0.08, y: 0.82, amount: "$0", label: "Start", title: "Journey Start", desc: "Every journey begins with a step.", icon: Bus, context: "Initial Phase" },
-  { x: 0.3, y: 0.66, amount: "$2,500", label: "Supplies", title: "Supplies", desc: "euwajdajidwadjajdadhjwiadadiahdahjdoadhawhdwiakdawhdiadawdabdabdabwdwadhwuiehehoewdajdbwbdudghadhalikd.", icon: GraduationCap, context: "Preparation" },
-  { x: 0.52, y: 0.5, amount: "$5,000", label: "Classroom", title: "Classroom", desc: "Renovating the learning hub.", icon: School, context: "Infrastructure" },
-  { x: 0.72, y: 0.34, amount: "$7,500", label: "Support", title: "Support", desc: "Training for our educators.", icon: BookOpen, context: "Empowerment" },
-  { x: 0.9, y: 0.16, amount: "$10,000", label: "Library", title: "Library", desc: "A sanctuary for knowledge.", icon: Library, context: "Legacy" },
+  { x: 0.08, y: 0.82, amount: "$0", label: "Start", title: "Laying the Groundwork", desc: "Confirming a local partner, meeting the communities, and getting an honest, itemized understanding of what's actually needed — so every dollar raised after this has a clear, verified purpose.", icon: Bus, context: "Initial Phase" },
+  { x: 0.3, y: 0.66, amount: "$2,500", label: "1st Goal", title: "Essential Supplies", desc: "Uniforms, shoes, notebooks, and basic school supplies for the ~100 kids identified across the four villages — covering the fundamentals needed just to attend and participate.", icon: GraduationCap, context: "Phase 1" },
+  { x: 0.52, y: 0.5, amount: "$5,000", label: "2nd Goal", title: "Repairing Schools", desc: "Addressing structural issues — roofing, walls, electrical — so the building itself is safe, dry, and durable through monsoon season. (Exact scope depends on an on-site assessment.)", icon: School, context: "Phase 2" },
+  { x: 0.72, y: 0.34, amount: "$7,500", label: "3rd Goal", title: "Better Equipment & Resources", desc: "Proper desks, chairs, blackboards, and a small library of books — turning the classroom into a space built for real, sustained learning.", icon: BookOpen, context: "Phase 3" },
+  { x: 0.9, y: 0.16, amount: "$10,000", label: "4th Goal", title: "Review & Expand", desc: "Once the first three tiers are complete, this funds an honest assessment of what worked and what didn't — then puts that model to work in a new community facing the same challenges, restarting the cycle where it's needed most.", icon: Library, context: "Phase 4" },
 ];
 
 const DonationHoriz = () => {

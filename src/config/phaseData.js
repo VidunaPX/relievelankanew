@@ -43,4 +43,40 @@ export const DEFAULT_PHASE_DATA = [
       },
     ],
   },
+  {
+    id: 'phase-3',
+    label: 'Phase 3',
+    image: 'https://picsum.photos/seed/relievelanka-phase3/600/400',
+    imageAlt: 'Students engaged in a classroom activity',
+    title: 'Enhanced Learning Environment',
+    desc: 'Upgrading facilities with modern technology and resources to create an engaging and effective learning environment.',
+    socialPosts: [
+      {
+        id: 'phase3-post-1',
+        platform: 'Instagram',
+        label: 'New technology in the classroom',
+        href: '#',
+      },
+      {
+        id: 'phase3-post-2',
+        platform: 'Twitter',
+        label: 'Student feedback on new resources',
+        href: '#',
+      },
+    ],
+    socialPosts: [
+      {
+        id: 'phase2-post-1',
+        platform: 'Instagram',
+        label: 'Classroom reopening ceremony',
+        href: '#',
+      },
+      {
+        id: 'phase2-post-2',
+        platform: 'LinkedIn',
+        label: 'Impact report: 90% fund-to-field',
+        href: '#',
+      },
+    ],
+  },
 ];
