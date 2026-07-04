@@ -47,7 +47,7 @@ const BackgroundEffects = () => {
       waterFallParticles = [];
       const currentScroll = window.scrollY;
       // We want the waterfall to exist from spawnY down to the bottom of the screen immediately
-      const verticalRange = H + 600; 
+      const verticalRange = H + 1200; 
 
       for (let i = 0; i < waterfallConfig.particleCount; i++) {
         const p = resetParticle({});
@@ -143,33 +143,41 @@ const BackgroundEffects = () => {
         revealProgress = Math.min(Math.max((window.scrollY - startReveal) / range, 0), 1);
       }
 
-      const drawLayer = (imgRef, speed, color, yOffset) => {
-         if (!imgRef.current || !imgRef.current.complete) return;
+      const drawLayer = (imgRef, _speed, yOffset) => {
+        if (!imgRef.current || !imgRef.current.complete) return;
 
         const img = imgRef.current;
         const aspect = img.height / img.width;
         const mWidth = W;
         const mHeight = W * aspect;
 
-  // Use the canvas height (H) which is now limited to 70vh
-  // This anchors the mountains to the bottom of the canvas element
-        const groundedY = H - mHeight - yOffset;
-        const hiddenY = H + 200; 
+        const groundedY = H - mHeight + yOffset;
+        const hiddenY = H + 200 + yOffset;
 
         const t = revealProgress;
         const smooth = t * t * (3 - 2 * t);
-        const parallax = (window.scrollY * speed) * 0.08;
 
-        const mountY = hiddenY * (1 - smooth) + (groundedY - parallax) * smooth;
+        const mountY = hiddenY * (1 - smooth) + groundedY * smooth;
+        const pivotX = mWidth / 2;
+        const tilt = (1 - smooth) * 0.08;
 
-         ctx.drawImage(img, 0, mountY, mWidth, mHeight);
-  // ... rest of your tint logic remains the same
-};
+        ctx.save();
+        ctx.translate(pivotX, mountY + mHeight);
+        ctx.rotate(-tilt);
+        ctx.drawImage(img, -pivotX, -mHeight, mWidth, mHeight);
 
-      drawLayer(mountImg4Ref, 0.05, 'rgba(255, 255, 255, 0.2)', 100); // Furthest/Slowest
-      drawLayer(mountImg3Ref, 0.1, 'rgba(255, 255, 255, 0.4)', 150);
-      drawLayer(mountImg2Ref, 0.2, 'rgba(255, 255, 255, 0.6)', 200);
-      drawLayer(mountImgRef, 0.3, 'rgba(255, 255, 255, 0.8)', 250);
+        ctx.globalCompositeOperation = 'source-atop';
+        ctx.fillStyle = 'rgba(255,255,255,0.95)';
+        ctx.fillRect(-pivotX, -mHeight, mWidth, mHeight);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.restore();
+      };
+      const baseYOffset = 100; // Base offset for the mountains
+
+      drawLayer(mountImg4Ref, 0.05, baseYOffset + 100);
+      drawLayer(mountImg3Ref, 0.1, baseYOffset + 150);
+      drawLayer(mountImg2Ref, 0.2, baseYOffset + 200);
+      drawLayer(mountImgRef, 0.3, baseYOffset + 250);
 
       // Waterfall paused
       // updateWaterfall();
@@ -201,11 +209,11 @@ const BackgroundEffects = () => {
         className={themeClass} 
         style={{ 
           position: 'fixed', 
-          top: '30vh', /* Moves the canvas start down by 30% of the viewport height */
+          top: 0,
           left: 0, 
           width: '100%',
-          height: '70vh', /* Adjust so it covers the remaining space */
-          zIndex: 10,
+          height: '100%',
+          zIndex: 0,
           pointerEvents: 'none' 
         }}
       />

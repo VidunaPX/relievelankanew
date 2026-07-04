@@ -49,9 +49,8 @@
 }
 
 .progress-ring-fill {
-  stroke: url(#ringGradient);
   transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 0 8px rgba(74,155,110,0.4));
+  filter: none;
 }
 
 .progress-ring-container {
