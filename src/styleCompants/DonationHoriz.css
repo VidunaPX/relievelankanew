@@ -14,7 +14,7 @@
 }
 
 @media (max-width: 768px) {
-  .track-container { width: 300vw; }
+  .track-container { width: 240vw; }
 }
 
 .track-path {

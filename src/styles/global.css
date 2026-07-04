@@ -44,6 +44,21 @@ body {
   overflow-x: hidden;
 }
 
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+/* Keep all sections inside viewport width on phones */
+section,
+.App,
+main {
+  width: 100%;
+  max-width: 100%;
+}
+
 /* Dark hero section */
 #hero {
   background: #e4fcff;
@@ -81,6 +96,19 @@ body {
 @media (max-width: 768px) {
   .hero-title { 
     font-size: 2.4rem !important; 
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   
   .floating-donate { 
