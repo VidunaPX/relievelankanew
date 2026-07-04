@@ -24,12 +24,13 @@
   height: 100%;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 0.5rem; /* internal padding so image doesn't touch edges */
   backdrop-filter: none; /* Removed the glass effect */
   transition: all 0.4s;
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .stat-card:hover {
@@ -55,9 +56,9 @@
 
 .embla__container {
   display: flex;
-  gap: 1.25rem; /* spacing between slides */
+  gap: clamp(1rem, 3vw, 2rem); /* responsive consistent spacing between slides */
   height: 100%;
-  align-items: center;
+  align-items: stretch; /* make slides the same height */
   touch-action: pan-y pinch-zoom;
 }
 
@@ -65,16 +66,19 @@
   height: 100%;
   flex: 0 0 var(--slide-size);
   min-width: 0;
-  padding-left: 0;
-  padding-right: 0;
+  padding-inline: clamp(0.5rem, 1.6vw, 1rem); /* even breathing space inside each slide */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide-image {
   width: 100%;
-  height: 85%;
+  height: 100%;
   object-fit: cover;
   display: block;
   border-radius: 18px; /* rounded image corners */
+  max-height: calc(100vh - 4rem);
 }
 
 .content-section {

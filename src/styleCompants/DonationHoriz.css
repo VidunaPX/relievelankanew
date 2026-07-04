@@ -8,43 +8,16 @@
 
 .donation-heading-panel,
 .donation-context-panel,
-.donation-detail-panel,
-.donation-right-column {
-  position: relative;
+.donation-detail-panel {
+  position: absolute;
   z-index: 40;
   box-sizing: border-box;
 }
 
-.donation-bottom-stack {
-  position: absolute;
-  left: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
-  right: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
-  bottom: var(--site-gutter);
-  z-index: 40;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  pointer-events: none;
-}
-
-.donation-content-row {
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
-  width: 100%;
-}
-
-.donation-right-column {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  flex: 0 0 min(20rem, calc(100vw - (var(--site-gutter) * 2)));
-  width: min(20rem, calc(100vw - (var(--site-gutter) * 2)));
-  max-width: 100%;
-}
-
 .donation-heading-panel {
-  text-align: left;
+  top: var(--site-gutter);
+  right: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
+  text-align: right;
 }
 
 .donation-heading-panel h2 {
@@ -56,10 +29,10 @@
 }
 
 .donation-context-panel {
-  flex: 1 1 auto;
-  min-width: 0;
-  width: auto;
-  max-width: none;
+  top: var(--site-gutter);
+  left: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
+  width: min(38rem, calc(100vw - (var(--site-gutter) * 2)));
+  max-width: 38rem;
   height: auto;
   text-align: left;
 }
@@ -76,31 +49,10 @@
 }
 
 .donation-detail-panel {
-  min-height: 10rem;
+  right: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
+  bottom: var(--site-gutter);
+  width: min(20rem, calc(100vw - (var(--site-gutter) * 2)));
   text-align: left;
-  position: relative;
-  width: 100%;
-}
-
-.donation-mountains {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; 
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-  margin: 0; 
-  padding: 0;
-  
-}
-
-.donation-mountains svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  transform: translateY(5%);
 }
 
 .donation-detail-panel > div {
@@ -113,7 +65,6 @@
   inset: 0;
   width: 340vw; /* Adjust for larger path reach */
   will-change: transform;
-  z-index: 2;
 }
 
 @media (max-width: 768px) {
@@ -127,7 +78,6 @@
   width: 100%;
   fill: rgba(255, 255, 255, 0.05); /* Very subtle path fill */
   pointer-events: none;
-  transform: translateX(-150px);
 }
 
 .milestone-marker {
