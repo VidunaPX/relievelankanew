@@ -1,8 +1,8 @@
 .hero-video-shell {
   width: 100%;
-  min-height: 60vh;
-  height: auto;
-  padding: 15px 8px;
+  min-height: 96vh;
+  height: 96vh;
+  padding: 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -12,8 +12,8 @@
 }
 
 .video-background {
-  width: 95%;
-  max-width: 1400px;
+  width: 100%;
+  max-width: none;
   height: 100%;
   margin: 0 auto;
   border-radius: 24px;
@@ -142,6 +142,7 @@
 @media (max-width: 1024px) {
   .hero-video-shell {
     min-height: 55vh;
+    height: auto;
     padding: 12px 6px;
   }
 
