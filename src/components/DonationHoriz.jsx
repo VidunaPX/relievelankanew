@@ -65,12 +65,12 @@ const DonationHoriz = () => {
 
   return (
     <section ref={sectionRef} className="donation-section" style={{ backgroundColor: 'var(--dark-blue)', color: '#f8fbff' }}>
-      <div className="donation-heading-panel absolute top-8 right-8 z-20 text-right">
-        <h2 className="font-serif text-4xl font-bold text-white">Goals & Objectives</h2>
+      <div className="donation-heading-panel">
+        <h2>Goals & Objectives</h2>
       </div>
 
-      {/* TOP LEFT WIDE CONTEXT CARD */}
-      <div className="donation-context-panel absolute top-8 left-8 z-40 w-[1000px] h-[800px]">
+      {/* TOP LEFT CONTEXT CARD — grid-stacked so the glass box sizes to the desc text */}
+      <div className="donation-context-panel">
         {MILESTONES.map((m, idx) => (
           <div key={m.context} className={`donation-context-card p-4 bg-white/5 backdrop-blur-md rounded-lg border border-white/10 transition-opacity duration-500 ${idx === activeIdx ? "opacity-100 donation-card-active" : "opacity-0 pointer-events-none"}`}>
             <div className="flex items-center gap-2 text-blue-400 font-bold uppercase tracking-widest text-xs mb-1">

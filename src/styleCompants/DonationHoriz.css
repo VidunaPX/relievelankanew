@@ -31,8 +31,8 @@
 .donation-context-panel {
   top: var(--site-gutter);
   left: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
-  width: min(38rem, calc(100vw - (var(--site-gutter) * 2)));
-  max-width: 38rem;
+  width: fit-content;
+  max-width: min(38rem, calc(100vw - (var(--site-gutter) * 2)));
   text-align: left;
   display: grid;
 }
@@ -42,6 +42,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: fit-content;
+  max-width: min(38rem, calc(100vw - (var(--site-gutter) * 2)));
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.22);
   color: rgba(248, 251, 255, 0.95);
