@@ -175,10 +175,15 @@
   .donation-detail-panel {
     bottom: var(--site-gutter);
     height: 8.75rem;
+    overflow: hidden;
   }
 
   .donation-detail-card {
-    padding: 1rem !important;
+    position: absolute;
+    inset: auto 0 0 auto; /* bottom: 0; right: 0 */
+    width: 100%;
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.28);
   }
 
   .donation-detail-card h3 {
