@@ -16,6 +16,12 @@ const Hero = ({ onShowDonationDetails }) => {
   const [navVisible, setNavVisible] = useState(true);
   const menuRef = useRef(null);
   const lastScrollY = useRef(0);
+  const navVisibleRef = useRef(true);
+  const menuOpenRef = useRef(false);
+
+  useEffect(() => {
+    menuOpenRef.current = menuOpen;
+  }, [menuOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -35,14 +41,20 @@ const Hero = ({ onShowDonationDetails }) => {
     const handleScroll = () => {
       const currentY = window.scrollY;
       const delta = currentY - lastScrollY.current;
+      let nextVisible = navVisibleRef.current;
 
       if (currentY <= topRevealOffset) {
-        setNavVisible(true);
+        nextVisible = true;
       } else if (delta > scrollDownThreshold) {
-        setNavVisible(false);
-        setMenuOpen(false);
+        nextVisible = false;
+        if (menuOpenRef.current) setMenuOpen(false);
       } else if (delta < -scrollUpThreshold) {
-        setNavVisible(true);
+        nextVisible = true;
+      }
+
+      if (nextVisible !== navVisibleRef.current) {
+        navVisibleRef.current = nextVisible;
+        setNavVisible(nextVisible);
       }
 
       lastScrollY.current = currentY;

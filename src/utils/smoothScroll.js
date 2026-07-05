@@ -1,11 +1,6 @@
-import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const resolveScrollTarget = (element, offset = 24) => {
-  ScrollTrigger.refresh(true);
-
   const pinnedTrigger = ScrollTrigger.getAll().find(
     (st) => st.trigger === element,
   );
@@ -29,6 +24,5 @@ export function scrollToId(elementId, options = {}) {
   scrollToElement(document.getElementById(elementId), options);
 }
 
-// Keep legacy name used by existing imports.
 export const smoothScrollToId = scrollToId;
 export const smoothScrollToElement = scrollToElement;

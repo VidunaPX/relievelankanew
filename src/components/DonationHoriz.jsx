@@ -18,61 +18,81 @@ const DonationHoriz = () => {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const busRef = useRef(null);
+  const activeIdxRef = useRef(0);
+  const metricsRef = useRef({ distance: 1, trackW: 1, vh: window.innerHeight });
   const [activeIdx, setActiveIdx] = useState(0);
 
   useLayoutEffect(() => {
-    const handleViewportChange = () => ScrollTrigger.refresh();
+    let refreshTimeout = null;
+
+    const handleViewportChange = () => {
+      if (refreshTimeout) window.clearTimeout(refreshTimeout);
+      refreshTimeout = window.setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 250);
+    };
 
     const ctx = gsap.context(() => {
       const getViewportHeight = () =>
         window.visualViewport?.height ?? window.innerHeight;
 
-      const getMetrics = () => ({
-        distance: Math.max(trackRef.current.scrollWidth - window.innerWidth, 1),
-        trackW: trackRef.current.scrollWidth,
-        vh: getViewportHeight(),
-      });
+      const updateMetrics = () => {
+        metricsRef.current = {
+          distance: Math.max(trackRef.current.scrollWidth - window.innerWidth, 1),
+          trackW: trackRef.current.scrollWidth,
+          vh: getViewportHeight(),
+        };
+      };
 
       const setBusPosition = (progress = 0) => {
         const p = Math.min(Math.max(progress, 0), 1);
-        const { distance, trackW, vh } = getMetrics();
+        const { distance, trackW, vh } = metricsRef.current;
         const seg = p * (MILESTONES.length - 1);
         const i = Math.min(Math.floor(seg), MILESTONES.length - 2);
         const t = seg - i;
-        const a = MILESTONES[i], b = MILESTONES[i + 1];
+        const a = MILESTONES[i];
+        const b = MILESTONES[i + 1];
+        const nextIdx = Math.min(Math.floor(p * MILESTONES.length), MILESTONES.length - 1);
 
-        setActiveIdx(Math.min(Math.floor(p * MILESTONES.length), MILESTONES.length - 1));
+        if (nextIdx !== activeIdxRef.current) {
+          activeIdxRef.current = nextIdx;
+          setActiveIdx(nextIdx);
+        }
+
         gsap.set(trackRef.current, { x: -distance * p });
         gsap.set(busRef.current, {
           x: (a.x + (b.x - a.x) * t) * trackW,
           y: (a.y + (b.y - a.y) * t) * vh - 20,
           rotation: Math.atan2((b.y - a.y) * vh, (b.x - a.x) * trackW) * (180 / Math.PI),
-          autoAlpha: 1
+          autoAlpha: 1,
         });
       };
 
+      updateMetrics();
       setBusPosition(0);
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: "top top",
-        end: () => `+=${getMetrics().distance + 1000}`,
+        start: 'top top',
+        end: () => `+=${metricsRef.current.distance + 1000}`,
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,
-        onRefresh: (self) => setBusPosition(self.progress),
+        onRefresh: (self) => {
+          updateMetrics();
+          setBusPosition(self.progress);
+        },
         onUpdate: (self) => {
           setBusPosition(self.progress);
-        }
+        },
       });
     }, sectionRef);
 
     window.addEventListener('resize', handleViewportChange);
-    window.visualViewport?.addEventListener('resize', handleViewportChange);
 
     return () => {
+      if (refreshTimeout) window.clearTimeout(refreshTimeout);
       window.removeEventListener('resize', handleViewportChange);
-      window.visualViewport?.removeEventListener('resize', handleViewportChange);
       ctx.revert();
     };
   }, []);
