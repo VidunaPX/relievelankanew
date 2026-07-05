@@ -72,7 +72,7 @@ const DonationHoriz = () => {
       {/* TOP LEFT WIDE CONTEXT CARD */}
       <div className="donation-context-panel absolute top-8 left-8 z-40 w-[1000px] h-[800px]">
         {MILESTONES.map((m, idx) => (
-          <div key={m.context} className={`p-4 bg-white/5 backdrop-blur-md rounded-lg border border-white/10 transition-opacity duration-500 ${idx === activeIdx ? "opacity-100" : "opacity-0 absolute inset-0"}`}>
+          <div key={m.context} className={`donation-context-card p-4 bg-white/5 backdrop-blur-md rounded-lg border border-white/10 transition-opacity duration-500 ${idx === activeIdx ? "opacity-100 donation-card-active" : "opacity-0 pointer-events-none"}`}>
             <div className="flex items-center gap-2 text-blue-400 font-bold uppercase tracking-widest text-xs mb-1">
               <TrendingUp size={14} /> {m.context}
             </div>
@@ -86,7 +86,7 @@ const DonationHoriz = () => {
         {MILESTONES.map((m, idx) => {
           const isActive = idx === activeIdx || (activeIdx === MILESTONES.length - 1 && idx === MILESTONES.length - 1);
           return (
-            <div key={m.amount} className={`absolute bottom-0 right-0 p-6 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 transition-all duration-500 w-full ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}`}>
+            <div key={m.amount} className={`donation-detail-card absolute bottom-0 right-0 p-6 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 transition-all duration-500 w-full ${isActive ? "opacity-100 translate-y-0 donation-card-active" : "opacity-0 translate-y-4 pointer-events-none"}`}>
               <m.icon className="size-8 mb-3 text-blue-300" />
               <h3 className="text-2xl font-bold">{m.amount}</h3>
               <p className="font-semibold text-lg">{m.title}</p>

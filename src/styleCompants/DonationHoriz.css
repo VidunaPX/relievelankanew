@@ -33,29 +33,41 @@
   left: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
   width: min(38rem, calc(100vw - (var(--site-gutter) * 2)));
   max-width: 38rem;
-  height: auto;
+  height: clamp(8.5rem, 18vh, 12rem);
   text-align: left;
+  overflow: hidden;
 }
 
-.donation-context-panel > div {
+.donation-context-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.22);
   color: rgba(248, 251, 255, 0.95);
+  overflow: hidden;
 }
 
 .donation-context-panel p {
   color: rgba(248, 251, 255, 0.9);
   opacity: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .donation-detail-panel {
   right: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
   bottom: var(--site-gutter);
   width: min(20rem, calc(100vw - (var(--site-gutter) * 2)));
+  height: 11rem;
   text-align: left;
 }
 
-.donation-detail-panel > div {
+.donation-detail-card {
   background: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.28);
 }
@@ -115,44 +127,79 @@
 }
 
 @media (max-width: 768px) {
+  .donation-section {
+    height: 100svh;
+    min-height: 100svh;
+    padding: 0;
+  }
+
   .donation-heading-panel,
   .donation-context-panel,
   .donation-detail-panel {
-    /* switch out of absolute positioning so boxes flow vertically */
-    position: static;
-    left: auto;
-    right: auto;
-    width: 100%;
+    position: absolute;
+    left: var(--site-gutter);
+    right: var(--site-gutter);
+    width: auto;
     max-width: none;
     box-sizing: border-box;
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0;
   }
 
   .donation-heading-panel {
+    top: var(--site-gutter);
+    bottom: auto;
     text-align: left;
-    margin-bottom: calc(var(--site-gutter) / 2);
+  }
+
+  .donation-heading-panel h2 {
+    font-size: clamp(1.75rem, 9vw, 2.7rem);
+    line-height: 1;
   }
 
   .donation-context-panel {
-    top: auto;
-    margin-bottom: calc(var(--site-gutter) / 2);
-    padding-right: var(--site-gutter);
-    padding-left: var(--site-gutter);
+    top: calc(var(--site-gutter) + 3.7rem);
+    height: clamp(8.75rem, 24svh, 11rem);
   }
 
-  /* push the track below the stacked panels on mobile */
+  .donation-context-card {
+    padding: 0.9rem !important;
+  }
+
+  .donation-context-panel p {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    -webkit-line-clamp: 5;
+  }
+
+  .donation-detail-panel {
+    bottom: var(--site-gutter);
+    height: 8.75rem;
+  }
+
+  .donation-detail-card {
+    padding: 1rem !important;
+  }
+
+  .donation-detail-card h3 {
+    font-size: 1.35rem;
+    line-height: 1.1;
+  }
+
+  .donation-detail-card p {
+    font-size: 0.95rem;
+    line-height: 1.2;
+  }
+
   .track-container {
-    position: relative;
-    width: 220vw;
-    margin-top: 0.5rem;
+    position: absolute;
+    inset: 0;
+    width: 240vw;
+    margin-top: 0;
     z-index: 1;
-    transform: none !important;
   }
 
-  /* ensure the bus is visible and positioned relative to the track on mobile */
   .bus-icon-wrapper {
     position: absolute;
-    opacity: 1;
   }
 }
