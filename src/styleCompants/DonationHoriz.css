@@ -59,16 +59,27 @@
   overflow: hidden;
 }
 
+/*
+  BOTTOM RIGHT DETAIL PANEL
+  Uses CSS Grid stacking instead of position: absolute for the cards.
+  All cards occupy the same grid cell (so they still crossfade in place,
+  exactly like before) but the container's height is now determined by
+  the tallest card's real content, not a hand-picked rem value. This
+  means: (1) the box is always just as tall as it needs to be, and
+  (2) it can never jump/overlap between phases, since the height is
+  the max across ALL cards at once, not just the active one.
+*/
 .donation-detail-panel {
   right: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
   bottom: var(--site-gutter);
   width: min(20rem, calc(100vw - (var(--site-gutter) * 2)));
   text-align: left;
-  display: grid; /* was: height: 11rem; */
+  display: grid;
 }
 
 .donation-detail-card {
-  grid-area: 1 / 1; /* stacks in same cell instead of position: absolute */
+  grid-area: 1 / 1;
+  align-self: end;
   background: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.28);
 }
@@ -175,7 +186,7 @@
 
   .donation-detail-panel {
     bottom: var(--site-gutter);
-    display: grid; /* was: height: 8.75rem; */
+    /* height is intentionally not fixed here — grid sizes it to content */
   }
 
   .donation-detail-card {

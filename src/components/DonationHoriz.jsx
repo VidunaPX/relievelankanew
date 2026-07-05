@@ -81,12 +81,12 @@ const DonationHoriz = () => {
         ))}
       </div>
 
-      {/* BOTTOM RIGHT DETAIL CARDS */}
-      <div className="donation-detail-panel absolute bottom-8 right-8 z-40 w-80">
+      {/* BOTTOM RIGHT DETAIL CARDS — grid-stacked, so the box auto-sizes to the tallest card's content instead of a fixed height, and stays stable across phase changes */}
+      <div className="donation-detail-panel z-40">
         {MILESTONES.map((m, idx) => {
           const isActive = idx === activeIdx || (activeIdx === MILESTONES.length - 1 && idx === MILESTONES.length - 1);
           return (
-            <div key={m.amount} className={`donation-detail-card absolute bottom-0 right-0 p-6 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 transition-all duration-500 w-full ${isActive ? "opacity-100 translate-y-0 donation-card-active" : "opacity-0 translate-y-4 pointer-events-none"}`}>
+            <div key={m.amount} className={`donation-detail-card p-6 backdrop-blur-md rounded-xl border transition-all duration-500 ${isActive ? "opacity-100 translate-y-0 donation-card-active" : "opacity-0 translate-y-4 pointer-events-none"}`}>
               <m.icon className="size-8 mb-3 text-blue-300" />
               <h3 className="text-2xl font-bold">{m.amount}</h3>
               <p className="font-semibold text-lg">{m.title}</p>
@@ -94,7 +94,7 @@ const DonationHoriz = () => {
           );
         })}
       </div>
-      
+
       <div ref={trackRef} className="track-container" style={{ width: '200%' }}>
         <svg className="track-path" viewBox="0 0 100 100" preserveAspectRatio="none">
           <path d="M0,100 L8,82 C18,74 22,70 30,66 C40,60 44,56 52,50 C62,42 66,40 72,34 C80,26 84,22 90,16 L100,10 L100,100 Z" fill="#d9d9d9" />
