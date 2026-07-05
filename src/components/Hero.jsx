@@ -16,7 +16,6 @@ const Hero = ({ onShowDonationDetails }) => {
   const [navVisible, setNavVisible] = useState(true);
   const menuRef = useRef(null);
   const lastScrollY = useRef(0);
-  const isAutoScrolling = useRef(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -34,8 +33,6 @@ const Hero = ({ onShowDonationDetails }) => {
     const topRevealOffset = 80;
 
     const handleScroll = () => {
-      if (isAutoScrolling.current) return;
-
       const currentY = window.scrollY;
       const delta = currentY - lastScrollY.current;
 
@@ -59,14 +56,8 @@ const Hero = ({ onShowDonationDetails }) => {
   const handleNavClick = (elementId) => {
     setMenuOpen(false);
     setNavVisible(true);
-    isAutoScrolling.current = true;
-
-    requestAnimationFrame(() => {
-      smoothScrollToId(elementId, { offset: 24 }).finally(() => {
-        isAutoScrolling.current = false;
-        lastScrollY.current = window.scrollY;
-      });
-    });
+    smoothScrollToId(elementId, { offset: 24 });
+    lastScrollY.current = window.scrollY;
   };
 
   return (
