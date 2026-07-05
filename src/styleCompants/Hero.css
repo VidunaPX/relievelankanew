@@ -50,18 +50,42 @@
 
 /* Sidebar Nav */
 .video-nav {
-  position: absolute;
-  top: calc(var(--hero-pad-y) + 0.2rem);
-  right: var(--hero-pad-x); /* Changed from left to right */
   z-index: 12;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Aligns menu items to the right */
+  align-items: flex-end;
+}
+
+.video-nav--floating {
+  --hero-menu-btn: clamp(40px, 3.2vw, 56px);
+  --hero-scale: 1;
+  position: fixed;
+  top: calc(var(--site-gutter) + 0.2rem);
+  right: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
+  z-index: 120;
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease,
+    visibility 0.28s ease;
+}
+
+.video-nav--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.video-nav--hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
 .hamburger-button {
-  width: var(--hero-menu-btn);
-  height: var(--hero-menu-btn);
+  width: var(--hero-menu-btn, clamp(40px, 3.2vw, 56px));
+  height: var(--hero-menu-btn, clamp(40px, 3.2vw, 56px));
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.55);
@@ -72,14 +96,17 @@
   justify-content: center;
   gap: 4px;
   cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
 }
 
 .hamburger-button span {
-  width: clamp(14px, calc(16px * var(--hero-scale)), 22px);
-  height: clamp(1.8px, calc(2px * var(--hero-scale)), 2.8px);
+  width: clamp(14px, calc(16px * var(--hero-scale, 1)), 22px);
+  height: clamp(1.8px, calc(2px * var(--hero-scale, 1)), 2.8px);
   background: white;
   border-radius: 2px;
   display: block;
+  flex-shrink: 0;
 }
 
 .video-menu {
@@ -181,7 +208,9 @@
     left: 10px;
   }
 
-  .video-nav {
+  .video-nav--floating {
+    --hero-menu-btn: clamp(36px, 4.2vw, 46px);
+    --hero-scale: 0.92;
     top: 18px;
     right: 18px;
   }
@@ -225,6 +254,11 @@
     --hero-title-size: clamp(1.9rem, 7vw, 3.2rem);
     --hero-cta-size: clamp(1.05rem, 3.8vw, 1.35rem);
     --hero-btn-size: clamp(0.98rem, 3.2vw, 1.1rem);
+  }
+
+  .video-nav--floating {
+    --hero-menu-btn: clamp(32px, 9vw, 44px);
+    --hero-scale: 0.9;
   }
 
   .video-background {

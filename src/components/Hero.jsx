@@ -2,17 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styleCompants/Hero.css';
 import "../styles/global.css"
 import myVideo from '/hero_video.mp4';
+import { smoothScrollToId } from '../utils/smoothScroll';
+
+const NAV_ITEMS = [
+  { label: 'What We Tackle', id: 'crisis' },
+  { label: 'Goals & Objectives', id: 'goals' },
+  { label: 'Our Work', id: 'impact' },
+  { label: 'Donate', id: 'donate' },
+];
 
 const Hero = ({ onShowDonationDetails }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
   const menuRef = useRef(null);
-
-  const smoothScrollTo = (elementId) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const lastScrollY = useRef(0);
+  const isAutoScrolling = useRef(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -24,26 +28,53 @@ const Hero = ({ onShowDonationDetails }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const scrollUpThreshold = 12;
+    const scrollDownThreshold = 8;
+    const topRevealOffset = 80;
+
+    const handleScroll = () => {
+      if (isAutoScrolling.current) return;
+
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY.current;
+
+      if (currentY <= topRevealOffset) {
+        setNavVisible(true);
+      } else if (delta > scrollDownThreshold) {
+        setNavVisible(false);
+        setMenuOpen(false);
+      } else if (delta < -scrollUpThreshold) {
+        setNavVisible(true);
+      }
+
+      lastScrollY.current = currentY;
+    };
+
+    lastScrollY.current = window.scrollY;
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleNavClick = (elementId) => {
+    setMenuOpen(false);
+    setNavVisible(true);
+    isAutoScrolling.current = true;
+
+    requestAnimationFrame(() => {
+      smoothScrollToId(elementId, { offset: 24 }).finally(() => {
+        isAutoScrolling.current = false;
+        lastScrollY.current = window.scrollY;
+      });
+    });
+  };
+
   return (
     <section id="hero" className="relative">
       <div className="hero-video-shell">
         <div className="video-background">
           <img className="video-logo" src="/relieveLankalogo.png" alt="Relieve Lanka logo" />
-          
-          <div className="video-nav" ref={menuRef}>
-            <button className="hamburger-button" onClick={() => setMenuOpen(!menuOpen)}>
-              <span></span><span></span><span></span>
-            </button>
-            {menuOpen && (
-              <div className="video-menu">
-                <button onClick={() => { smoothScrollTo('Crisis'); setMenuOpen(false); }}>Crisis</button>
-                <button onClick={() => { smoothScrollTo('Solution'); setMenuOpen(false); }}>Solution</button>
-                <button onClick={() => { smoothScrollTo('Fund'); setMenuOpen(false); }}>Fund</button>
-                <button onClick={() => { smoothScrollTo('Our Projects'); setMenuOpen(false); }}>Our Projects</button>
-              </div>
-            )}
-          </div>
-          
+
           <video className="hero-video" autoPlay muted loop playsInline>
             <source src={myVideo} type="video/mp4" />
           </video>
@@ -60,6 +91,32 @@ const Hero = ({ onShowDonationDetails }) => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div
+        ref={menuRef}
+        className={`video-nav video-nav--floating${navVisible ? ' video-nav--visible' : ' video-nav--hidden'}`}
+      >
+        <button
+          className="hamburger-button"
+          aria-label="Open navigation menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span></span><span></span><span></span>
+        </button>
+        {menuOpen && (
+          <div className="video-menu">
+            {NAV_ITEMS.map(({ label, id }) => (
+              <button
+                key={id}
+                onClick={() => handleNavClick(id)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

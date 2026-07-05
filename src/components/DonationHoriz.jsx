@@ -64,7 +64,7 @@ const DonationHoriz = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="donation-section" style={{ backgroundColor: 'var(--dark-blue)', color: '#f8fbff' }}>
+    <section id="goals" ref={sectionRef} className="donation-section" style={{ backgroundColor: 'var(--dark-blue)', color: '#f8fbff' }}>
       <div className="donation-heading-panel">
         <h2>Goals & Objectives</h2>
       </div>

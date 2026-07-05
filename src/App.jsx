@@ -13,6 +13,7 @@ import DonationHoriz from './components/DonationHoriz';
 import Footer from './components/Footer';
 
 import useScrollObserver from './hooks/useScrollObserver';
+import { smoothScrollToId } from './utils/smoothScroll';
 
 const App = () => {
   const [funding, setFunding] = useState(0);
@@ -34,10 +35,7 @@ const App = () => {
   };
 
   const handleShowDonationDetails = () => {
-    const donateSection = document.getElementById('donate');
-    if (donateSection) {
-      donateSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    smoothScrollToId('donate', { offset: 24 });
   };
 
   return (

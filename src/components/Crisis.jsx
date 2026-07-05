@@ -30,7 +30,7 @@ const Crisis = () => {
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
   return (
-    <section id="Crisis" className="crisis-section">
+    <section id="crisis" className="crisis-section">
       <div className="crisis-component-wrapper">
         <div className="crisis-container">
           <div className="embla">
