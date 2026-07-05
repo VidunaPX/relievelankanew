@@ -118,17 +118,41 @@
   .donation-heading-panel,
   .donation-context-panel,
   .donation-detail-panel {
-    left: var(--site-gutter);
-    right: var(--site-gutter);
-    width: auto;
+    /* switch out of absolute positioning so boxes flow vertically */
+    position: static;
+    left: auto;
+    right: auto;
+    width: 100%;
     max-width: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.5rem 0;
   }
 
   .donation-heading-panel {
     text-align: left;
+    margin-bottom: calc(var(--site-gutter) / 2);
   }
 
   .donation-context-panel {
-    top: calc(var(--site-gutter) + 4.5rem);
+    top: auto;
+    margin-bottom: calc(var(--site-gutter) / 2);
+    padding-right: var(--site-gutter);
+    padding-left: var(--site-gutter);
+  }
+
+  /* push the track below the stacked panels on mobile */
+  .track-container {
+    position: relative;
+    width: 220vw;
+    margin-top: 0.5rem;
+    z-index: 1;
+    transform: none !important;
+  }
+
+  /* ensure the bus is visible and positioned relative to the track on mobile */
+  .bus-icon-wrapper {
+    position: absolute;
+    opacity: 1;
   }
 }
