@@ -63,11 +63,12 @@
   right: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
   bottom: var(--site-gutter);
   width: min(20rem, calc(100vw - (var(--site-gutter) * 2)));
-  height: 11rem;
   text-align: left;
+  display: grid; /* was: height: 11rem; */
 }
 
 .donation-detail-card {
+  grid-area: 1 / 1; /* stacks in same cell instead of position: absolute */
   background: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.28);
 }
@@ -174,16 +175,11 @@
 
   .donation-detail-panel {
     bottom: var(--site-gutter);
-    height: 8.75rem;
-    overflow: hidden;
+    display: grid; /* was: height: 8.75rem; */
   }
 
   .donation-detail-card {
-    position: absolute;
-    inset: auto 0 0 auto; /* bottom: 0; right: 0 */
-    width: 100%;
-    background: rgba(255, 255, 255, 0.16);
-    border-color: rgba(255, 255, 255, 0.28);
+    padding: 1rem !important;
   }
 
   .donation-detail-card h3 {
