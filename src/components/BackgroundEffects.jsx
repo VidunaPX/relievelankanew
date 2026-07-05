@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/waterfall.css';
-import mountImg from '../assets/mountainfront.png';
-import mountImg2 from '../assets/mountain2.png';
-import mountImg3 from '../assets/mountain3.png';
-import mountImg4 from '../assets/mountain4.png';
+import mountImg from '/mountainfront.png';
+import mountImg2 from '/mountain2.png';
+import mountImg3 from '/mountain3.png';
+import mountImg4 from '/mountain4.png';
 import '../styles/mountain.css';
 
 const BackgroundEffects = () => {

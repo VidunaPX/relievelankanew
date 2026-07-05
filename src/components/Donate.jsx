@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styleCompants/Donate.css';
 
-const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
+const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0}) => {
   const [customAmount, setCustomAmount] = useState('');
   const [fundPercent, setFundPercent] = useState(0);
   const progressRingRef = useRef(null);
@@ -125,7 +125,7 @@ const Donate = ({ onDonation, funding = 0, goal = 50000, donors = 0 }) => {
 
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                 <span className="font-display text-5xl text-white">{fundPercent}%</span>
-                <span className="text-sm mt-2" style={{ color: 'rgba(255,255,255,0.78)' }}>of goal reached</span>
+                <span className="text-sm mt-2" style={{ color: 'rgba(255,255,255,0.78)' }}>of phase 1 goal reached</span>
               </div>
             </div>
           </div>

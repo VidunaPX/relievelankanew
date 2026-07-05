@@ -17,7 +17,7 @@ import useScrollObserver from './hooks/useScrollObserver';
 const App = () => {
   const [funding, setFunding] = useState(0);
   const [donors, setDonors] = useState(0);
-  const goal = 10000;
+  const goal = 5000;
 
   // Initialize scroll observer
   useScrollObserver();
@@ -25,7 +25,7 @@ const App = () => {
   // Use fixed funding and donor count
   useEffect(() => {
     setFunding(52);
-    setDonors(1);
+    setDonors(2);
   }, []);
 
   const handleDonation = (amount) => {

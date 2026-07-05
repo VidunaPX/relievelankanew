@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../styleCompants/Crisis.css';
 import useEmblaCarousel from 'embla-carousel-react';
-import image1 from '../assets/image1.jpg';
-import image2 from '../assets/image2.jpg';
-import image3 from '../assets/image3.jpeg';
+import image1 from '/image1.jpg';
+import image2 from '/image2.jpg';
+import image3 from '/image3.jpeg';
 
 const SLIDE_DATA = [
   { title: "Interrupted Learning", desc: "School attendance in the region is inconsistent, shaped by distance, seasonal work, and household responsibilities. Gaps add up over time, and there's little support to help kids catch back up once they fall behind.", image: image1 },
