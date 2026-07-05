@@ -21,11 +21,16 @@ const DonationHoriz = () => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   useLayoutEffect(() => {
+    const handleViewportChange = () => ScrollTrigger.refresh();
+
     const ctx = gsap.context(() => {
+      const getViewportHeight = () =>
+        window.visualViewport?.height ?? window.innerHeight;
+
       const getMetrics = () => ({
         distance: Math.max(trackRef.current.scrollWidth - window.innerWidth, 1),
         trackW: trackRef.current.scrollWidth,
-        vh: window.innerHeight
+        vh: getViewportHeight(),
       });
 
       const setBusPosition = (progress = 0) => {
@@ -54,13 +59,22 @@ const DonationHoriz = () => {
         end: () => `+=${getMetrics().distance + 1000}`,
         pin: true,
         scrub: 1,
+        invalidateOnRefresh: true,
         onRefresh: (self) => setBusPosition(self.progress),
         onUpdate: (self) => {
           setBusPosition(self.progress);
         }
       });
     }, sectionRef);
-    return () => ctx.revert();
+
+    window.addEventListener('resize', handleViewportChange);
+    window.visualViewport?.addEventListener('resize', handleViewportChange);
+
+    return () => {
+      window.removeEventListener('resize', handleViewportChange);
+      window.visualViewport?.removeEventListener('resize', handleViewportChange);
+      ctx.revert();
+    };
   }, []);
 
   return (

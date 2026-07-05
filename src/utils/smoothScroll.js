@@ -7,10 +7,40 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 let activeScrollTween = null;
 let scrollAnimId = 0;
 
+const isTouchDevice = () =>
+  window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
 const restoreScrollBehavior = (previousValue, animId) => {
   if (animId === scrollAnimId) {
     document.documentElement.style.scrollBehavior = previousValue;
   }
+};
+
+const resolveScrollTarget = (element, offset = 24) => {
+  ScrollTrigger.refresh(true);
+
+  const pinnedTrigger = ScrollTrigger.getAll().find(
+    (st) => st.trigger === element,
+  );
+
+  if (pinnedTrigger) {
+    return Math.max(pinnedTrigger.start - offset, 0);
+  }
+
+  const rect = element.getBoundingClientRect();
+  return Math.max(rect.top + window.scrollY - offset, 0);
+};
+
+const lockScrollInteraction = () => {
+  if (!isTouchDevice()) return;
+
+  document.documentElement.style.touchAction = 'none';
+  document.body.style.touchAction = 'none';
+};
+
+const unlockScrollInteraction = () => {
+  document.documentElement.style.touchAction = '';
+  document.body.style.touchAction = '';
 };
 
 export function smoothScrollToElement(
@@ -19,46 +49,43 @@ export function smoothScrollToElement(
 ) {
   if (!element) return Promise.resolve();
 
-  ScrollTrigger.refresh();
-
+  const targetY = resolveScrollTarget(element, offset);
   const previousScrollBehavior = document.documentElement.style.scrollBehavior;
   document.documentElement.style.scrollBehavior = 'auto';
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    gsap.set(window, {
-      scrollTo: { y: element, offsetY: offset, autoKill: true },
-    });
+    window.scrollTo(0, targetY);
     restoreScrollBehavior(previousScrollBehavior, ++scrollAnimId);
     ScrollTrigger.update();
     return Promise.resolve();
   }
 
   activeScrollTween?.kill();
+  lockScrollInteraction();
 
   const animId = ++scrollAnimId;
 
   return new Promise((resolve) => {
+    const finish = () => {
+      unlockScrollInteraction();
+      activeScrollTween = null;
+      restoreScrollBehavior(previousScrollBehavior, animId);
+      ScrollTrigger.refresh();
+      ScrollTrigger.update();
+      resolve();
+    };
+
     activeScrollTween = gsap.to(window, {
       scrollTo: {
-        y: element,
-        offsetY: offset,
-        autoKill: true,
+        y: targetY,
+        autoKill: false,
       },
       duration,
       ease: 'power3.inOut',
       overwrite: true,
       onUpdate: () => ScrollTrigger.update(),
-      onComplete: () => {
-        activeScrollTween = null;
-        restoreScrollBehavior(previousScrollBehavior, animId);
-        ScrollTrigger.update();
-        resolve();
-      },
-      onKill: () => {
-        activeScrollTween = null;
-        restoreScrollBehavior(previousScrollBehavior, animId);
-        resolve();
-      },
+      onComplete: finish,
+      onKill: finish,
     });
   });
 }
@@ -70,4 +97,5 @@ export function smoothScrollToId(elementId, options = {}) {
 export function cancelSmoothScroll() {
   activeScrollTween?.kill();
   activeScrollTween = null;
+  unlockScrollInteraction();
 }
