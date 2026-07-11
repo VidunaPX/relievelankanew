@@ -1,0 +1,120 @@
+.amount-btn {
+  position: relative;
+  border: 1.5px solid rgba(82, 74, 155, 0.25);
+  background: rgba(0, 51, 255, 0.04);
+  color: #d6cfc2;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  font-family: 'Raleway', sans-serif;
+}
+
+.amount-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(30, 18, 255, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.amount-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(74, 119, 155, 0.15);
+}
+
+.amount-btn:hover::before { 
+  opacity: 1; 
+}
+
+.amount-btn.selected {
+  border-color: var(--accent-bright);
+  background: rgba(74, 119, 155, 0.15);
+  box-shadow: 0 0 25px rgba(145, 193, 255, 0.25), inset 0 0 20px rgba(74, 93, 155, 0.08);
+  transform: scale(1.05);
+}
+
+.donate-hero-panel {
+  width: 100%;
+  max-width: 680px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 32px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+#donate .section-content {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--section-block-padding);
+  padding-bottom: var(--section-block-padding);
+}
+
+#donate .grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+  gap: clamp(2rem, 6vw, 4.5rem);
+  align-items: center;
+}
+
+#donate .grid > div {
+  min-width: 0;
+}
+
+#donate .grid > div:first-child {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+#donate .grid > div:last-child {
+  align-self: center;
+}
+
+#donate .donate-hero-panel + .flex,
+#donate .donate-cta {
+  margin-left: 0;
+}
+
+#donate .donate-hero-panel + .flex {
+  justify-content: flex-start !important;
+  width: 100%;
+}
+
+#donate .progress-ring-container {
+  width: min(500px, 100%);
+  height: auto;
+}
+
+@media (max-width: 860px) {
+  #donate .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .donate-hero-panel {
+    max-width: none;
+  }
+}
+
+.donate-hero-panel h2,
+.donate-hero-panel p {
+  position: relative;
+  z-index: 1;
+}
+
+.donate-panel-copy {
+  color: rgba(214, 207, 194, 0.9);
+}
+
+.donate-cta {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}

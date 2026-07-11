@@ -1,0 +1,363 @@
+.donation-journey {
+  position: relative;
+  width: 100%;
+  background: transparent;
+}
+
+.donation-journey__pin {
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  padding: 1rem 1.5rem 1.25rem;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.donation-journey__header {
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.donation-journey__header-copy {
+  min-width: 12rem;
+}
+
+.donation-journey__header-progress {
+  flex: 1;
+  min-width: min(100%, 22rem);
+}
+
+.donation-journey__eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 0.25rem;
+}
+
+.donation-journey__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  color: #0b1b2b;
+  line-height: 1.15;
+}
+
+.donation-journey__subtitle {
+  font-size: 0.85rem;
+  color: #526177;
+  margin-bottom: 0.45rem;
+}
+
+.donation-journey__subtitle strong {
+  color: #050956;
+}
+
+.donation-journey__amount-track {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
+  margin-bottom: 0.45rem;
+}
+
+.donation-journey__amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  color: #050956;
+}
+
+.donation-journey__amount-label {
+  font-size: 0.78rem;
+  color: #526177;
+}
+
+.donation-journey__progress-rail {
+  width: 100%;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.donation-journey__progress-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--light-blue), var(--accent-bright));
+}
+
+.donation-journey__stage {
+  position: relative;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  min-height: 0;
+  height: 100%;
+  overflow: visible;
+}
+
+.donation-journey__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.donation-journey__hill-fill {
+  stroke: rgba(117, 170, 255, 0.18);
+  stroke-width: 1;
+}
+
+.donation-journey__hill-path {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.donation-journey__start-label {
+  position: absolute;
+  left: 8%;
+  bottom: 8%;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #050956;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(5, 9, 86, 0.2);
+  pointer-events: none;
+}
+
+.donation-journey__bus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.75rem;
+  z-index: 14;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
+  will-change: transform;
+}
+
+.donation-journey__bus-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.donation-journey__library {
+  position: absolute;
+  z-index: 13;
+  transform: translate(-50%, -110%);
+  text-align: center;
+  min-width: 6.5rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(5, 9, 86, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.donation-journey__library--reached {
+  transform: translate(-50%, -118%) scale(1.06);
+  border-color: rgba(5, 9, 86, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+}
+
+.donation-journey__library-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin: 0 auto 0.35rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(5, 9, 86, 0.1);
+  color: #050956;
+  font-size: 1rem;
+}
+
+.donation-journey__library-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #050956;
+  margin-bottom: 0.15rem;
+}
+
+.donation-journey__library-label {
+  font-size: 0.72rem;
+  color: #526177;
+}
+
+.donation-journey__markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 12;
+}
+
+.milestone-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #526177;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(5, 9, 86, 0.2);
+  opacity: 0.55;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.milestone-marker--reached {
+  opacity: 1;
+  color: #050956;
+  border-color: rgba(5, 9, 86, 0.4);
+}
+
+.milestone-marker--active {
+  transform: translate(-50%, -50%) scale(1.08);
+  border-color: rgba(117, 170, 255, 0.55);
+}
+
+.donation-journey__cards {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.milestone-card {
+  position: absolute;
+  width: min(15rem, 42vw);
+  pointer-events: none;
+  border-radius: 1rem;
+  border: 1px solid rgba(5, 9, 86, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 0.85rem 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) scale(0.88);
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.milestone-card--left {
+  transform: translate(calc(-100% - 0.85rem), -50%) scale(0.88);
+}
+
+.milestone-card--right {
+  transform: translate(0.85rem, -50%) scale(0.88);
+}
+
+.milestone-card--revealed {
+  opacity: 1;
+  visibility: visible;
+}
+
+.milestone-card--revealed.milestone-card--left {
+  transform: translate(calc(-100% - 0.85rem), -50%) scale(1);
+}
+
+.milestone-card--revealed.milestone-card--right {
+  transform: translate(0.85rem, -50%) scale(1);
+}
+
+.milestone-card--active {
+  border-color: rgba(5, 9, 86, 0.4);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
+}
+
+.milestone-card__amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #050956;
+  margin-bottom: 0.25rem;
+}
+
+.milestone-card__title {
+  font-size: 0.92rem;
+  color: #0b1b2b;
+  margin-bottom: 0.35rem;
+}
+
+.milestone-card__goal {
+  font-size: 0.78rem;
+  color: #526177;
+  margin-bottom: 0.35rem;
+}
+
+.milestone-card__goal span {
+  color: #050956;
+  font-weight: 600;
+}
+
+.milestone-card__fact {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: #526177;
+}
+
+@media (max-width: 768px) {
+  .donation-journey__pin {
+    padding: 0.85rem 1rem 1rem;
+  }
+
+  .donation-journey__header {
+    align-items: flex-start;
+  }
+
+  .donation-journey__bus {
+    width: 3rem;
+  }
+
+  .donation-journey__library {
+    min-width: 5.25rem;
+    padding: 0.45rem;
+  }
+
+  .milestone-card {
+    width: min(13rem, 58vw);
+    padding: 0.65rem 0.75rem;
+  }
+
+  .milestone-card__fact {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .milestone-card,
+  .milestone-marker,
+  .donation-journey__library {
+    transition: none;
+  }
+}

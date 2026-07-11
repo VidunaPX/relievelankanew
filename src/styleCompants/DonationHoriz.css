@@ -1,0 +1,213 @@
+ bus.donation-section {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--dark-blue);
+  color: #ffffff;
+}
+
+.donation-heading-panel,
+.donation-context-panel,
+.donation-detail-panel {
+  position: absolute;
+  z-index: 40;
+  box-sizing: border-box;
+}
+
+.donation-heading-panel {
+  top: var(--site-gutter);
+  left: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
+  text-align: left;
+}
+
+.donation-heading-panel h2 {
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1.05;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.donation-context-panel {
+  top: calc(var(--site-gutter) + 5rem);
+  left: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
+  width: fit-content;
+  max-width: min(38rem, calc(100vw - (var(--site-gutter) * 2)));
+  text-align: left;
+  display: grid;
+}
+
+.donation-context-card {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: fit-content;
+  max-width: min(38rem, calc(100vw - (var(--site-gutter) * 2)));
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(248, 251, 255, 0.95);
+}
+
+.donation-context-panel p {
+  color: rgba(248, 251, 255, 0.9);
+  opacity: 1;
+}
+
+/*
+  BOTTOM RIGHT DETAIL PANEL
+  Uses CSS Grid stacking instead of position: absolute for the cards.
+  All cards occupy the same grid cell (so they still crossfade in place,
+  exactly like before) but the container's height is now determined by
+  the tallest card's real content, not a hand-picked rem value. This
+  means: (1) the box is always just as tall as it needs to be, and
+  (2) it can never jump/overlap between phases, since the height is
+  the max across ALL cards at once, not just the active one.
+*/
+.donation-detail-panel {
+  right: max(var(--site-gutter), calc((100vw - var(--site-content-width)) / 2));
+  bottom: var(--site-gutter);
+  width: min(20rem, calc(100vw - (var(--site-gutter) * 2)));
+  text-align: left;
+  display: grid;
+}
+
+.donation-detail-card {
+  grid-area: 1 / 1;
+  align-self: end;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.track-container {
+  position: absolute;
+  inset: 0;
+  width: 340vw; /* Adjust for larger path reach */
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .track-container { width: 240vw; }
+}
+
+.track-path {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  fill: rgba(255, 255, 255, 0.05); /* Very subtle path fill */
+  pointer-events: none;
+}
+
+.milestone-marker {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.milestone-marker > div:first-child {
+  background: rgba(5, 9, 86, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.milestone-marker > div:last-child {
+  opacity: 0.95;
+}
+
+.bus-icon-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  opacity: 0;
+  padding: 0.5rem;
+  background: var(--royal);
+  border-radius: 1rem;
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .donation-section {
+    height: 100svh;
+    min-height: 100svh;
+    padding: 0;
+  }
+
+  .donation-heading-panel,
+  .donation-context-panel,
+  .donation-detail-panel {
+    position: absolute;
+    left: var(--site-gutter);
+    right: var(--site-gutter);
+    width: auto;
+    max-width: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .donation-heading-panel {
+    top: var(--site-gutter);
+    bottom: auto;
+    text-align: left;
+  }
+
+  .donation-heading-panel h2 {
+    font-size: clamp(1.75rem, 9vw, 2.7rem);
+    line-height: 1;
+  }
+
+  .donation-context-panel {
+    top: calc(var(--site-gutter) + 3.7rem);
+    /* height is intentionally not fixed here — grid sizes it to content */
+  }
+
+  .donation-context-card {
+    padding: 0.9rem !important;
+  }
+
+  .donation-context-panel p {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .donation-detail-panel {
+    bottom: var(--site-gutter);
+    /* height is intentionally not fixed here — grid sizes it to content */
+  }
+
+  .donation-detail-card {
+    padding: 1rem !important;
+  }
+
+  .donation-detail-card h3 {
+    font-size: 1.35rem;
+    line-height: 1.1;
+  }
+
+  .donation-detail-card p {
+    font-size: 0.95rem;
+    line-height: 1.2;
+  }
+
+  .track-container {
+    position: absolute;
+    inset: 0;
+    width: 240vw;
+    margin-top: 0;
+    z-index: 1;
+  }
+
+  .bus-icon-wrapper {
+    position: absolute;
+  }
+}

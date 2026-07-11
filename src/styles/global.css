@@ -1,0 +1,154 @@
+/* CSS Variables */
+:root {
+  --accent: #3e407b; 
+  --accent-bright: #75aaff;
+  --accent-deep: #040852;
+  --gold: #C9A84C;
+  --moss: #3B5240;
+  --bark: #2A1E14;
+  --earth: #1A120A;
+  --canopy: #0F1A0D;
+  --crisis: #1E120A;
+  --crisis-warm: #96928f;
+  --mountain-base: #2A1E14;
+  --mountain-shadow: #1A120A;
+  --mountain-highlight: #3B5240;
+  --mountain-opacity: 0.7;
+
+  /* Brands Colors */
+  --dark-blue: #050956;
+  --light-blue: #345087;
+  --soft-blue: #e4fcff;
+  --gold-accent: #ded8a5;
+  --gold-light: #fbfacc;
+
+  /* Shared layout rhythm: keeps text boxes lined up site-wide */
+  --site-content-width: 72rem;
+  --site-gutter: clamp(1rem, 4vw, 3rem);
+  --section-block-padding: clamp(4rem, 8vw, 7rem);
+}
+
+/* Base Styles & Resets */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+html {
+  scroll-behavior: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--moss) #0a0a08;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: #526177;
+
+  color: #0b1b2b;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Shared content rail for the website's main text bounding boxes. */
+:where(.section-content, .content-section, .our-work__inner, .carousel-shell) {
+  width: min(var(--site-content-width), calc(100% - (var(--site-gutter) * 2)));
+  max-width: var(--site-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+:where(.section-content, .content-section, .our-work__inner) {
+  text-align: left;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-wrap: pretty;
+}
+
+:where(p) {
+  text-wrap: pretty;
+}
+
+:where(p) {
+  max-width: 68ch;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+/* Keep all sections inside viewport width on phones */
+section,
+.App,
+main {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Dark hero section */
+#hero {
+  background: #e4fcff;
+  color: #d6cfc2; /* keep hero text light */
+}
+
+/* Ensure crisis component remains dark */
+.crisis-component-wrapper {
+  background: #526177;;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar { 
+  width: 6px; 
+}
+
+::-webkit-scrollbar-track { 
+  background: #0a0a08; 
+}
+
+::-webkit-scrollbar-thumb { 
+  background: var(--moss); 
+  border-radius: 3px; 
+}
+
+/* Accessibility & Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .hero-title { 
+    font-size: 2.4rem !important; 
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .floating-donate { 
+    width: 52px; 
+    height: 52px; 
+    bottom: 20px; 
+    right: 20px; 
+  }
+}

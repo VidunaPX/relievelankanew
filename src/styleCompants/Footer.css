@@ -1,0 +1,54 @@
+:root {
+  --milestone-bg: oklch(0.9 0.06 240);
+  --bus-color: var(--royal);
+  --track-width-sm: 300vw;
+  --track-width-lg: 340vw;
+}
+
+.donation-section {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--background);
+}
+
+.track-container {
+  position: absolute;
+  inset: 0;
+  width: var(--track-width-lg);
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .track-container { width: var(--track-width-sm); }
+}
+
+.track-path {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  fill: var(--milestone-bg);
+  opacity: 0.9;
+}
+
+.bus-icon-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  transform-origin: center bottom;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--royal);
+  padding: 0.75rem;
+  border-radius: 1rem;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.milestone-marker {
+  position: absolute;
+  transform: translate(-50%, -100%);
+}
