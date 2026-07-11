@@ -14,10 +14,27 @@ const NAV_ITEMS = [
 const Hero = ({ onShowDonationDetails }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
+  const [ctaPhraseIndex, setCtaPhraseIndex] = useState(0);
   const menuRef = useRef(null);
   const lastScrollY = useRef(0);
   const navVisibleRef = useRef(true);
   const menuOpenRef = useRef(false);
+
+  const ctaPhrases = [
+    'to save a future.',
+    'to change lives.',
+    'to build hope.',
+    'to create opportunity.',
+    'to empower youth.'
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCtaPhraseIndex((prev) => (prev + 1) % ctaPhrases.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     menuOpenRef.current = menuOpen;
@@ -89,7 +106,7 @@ const Hero = ({ onShowDonationDetails }) => {
                   Donate 
               </button>
               <p className="cta-text">
-                 to save a future.
+                 {ctaPhrases[ctaPhraseIndex]}
            </p>
             </div>
           </div>
