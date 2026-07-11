@@ -43,7 +43,8 @@
 }
 
 .donation-journey__title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
   font-size: clamp(1.35rem, 2.5vw, 2rem);
   color: #0b1b2b;
   line-height: 1.15;
@@ -68,7 +69,8 @@
 }
 
 .donation-journey__amount {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
   font-size: clamp(1.2rem, 2vw, 1.55rem);
   color: #050956;
 }
@@ -127,7 +129,8 @@
   position: absolute;
   left: 8%;
   bottom: 8%;
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
   font-size: 0.95rem;
   color: #050956;
   padding: 0.25rem 0.55rem;
@@ -190,7 +193,8 @@
 }
 
 .donation-journey__library-amount {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
   font-size: 0.95rem;
   color: #050956;
   margin-bottom: 0.15rem;
@@ -292,7 +296,8 @@
 }
 
 .milestone-card__amount {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
   font-size: 1.05rem;
   color: #050956;
   margin-bottom: 0.25rem;

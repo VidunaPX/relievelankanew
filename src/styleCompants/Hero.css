@@ -1,8 +1,8 @@
 .hero-video-shell {
   width: 100%;
-  min-height: 96vh;
-  height: 96vh;
-  padding: 10px;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 40px 20px 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -13,13 +13,14 @@
 
 .video-background {
   --hero-scale: 1;
-  --hero-pad-x: clamp(1.2rem, 2.4vw, 3.2rem);
-  --hero-pad-y: clamp(1rem, 1.6vw, 2rem);
+  --hero-pad-x: clamp(2rem, 3.5vw, 4.5rem);
+  --hero-pad-y: clamp(2.5rem, 3.5vw, 4rem);
+  --hero-pad-bottom: 0;
   --hero-logo-size: clamp(72px, 5vw, 110px);
   --hero-menu-btn: clamp(40px, 3.2vw, 56px);
-  --hero-title-size: clamp(4.2rem, 3.4vw, 4.6rem);
-  --hero-cta-size: clamp(1rem, 1.2vw, 1.55rem);
-  --hero-btn-size: clamp(0.95rem, 1vw, 1.15rem);
+  --hero-title-size: clamp(6.5rem, 4.5vw, 6rem);
+  --hero-cta-size: clamp(1.3rem, 1.8vw, 2rem);
+  --hero-btn-size: clamp(1.1rem, 1.3vw, 1.4rem);
   --hero-content-width: min(var(--site-content-width), calc(100% - (var(--site-gutter) * 2)));
   width: 100%;
   max-width: none;
@@ -151,7 +152,7 @@
 }
 
 .hero-title {
-  font-family: 'Cinzel', serif;
+  font-family: 'Cormorant Garamond', serif;
   /* Fluid typography: scales with viewport width but clamps to sensible extremes */
   font-size: var(--hero-title-size) !important;
   color: white;
@@ -160,7 +161,8 @@
   white-space: normal;
   max-width: 70ch;
   line-height: 1.15;
-  text-align: left; 
+  text-align: left;
+  font-weight: 700;
 }
 
 .cta-wrapper{
@@ -177,6 +179,7 @@
   margin: 0;
   max-width: 40ch;
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  font-weight: bold;
 }
 
 @media (max-width: 1024px) {
@@ -395,7 +398,7 @@
   border: none;
   border-radius: 7px;
   font-size: var(--hero-btn-size);
-  font-weight: 600;
+  font-weight: bold;
   cursor: pointer;
   transition: transform 0.3s, background 0.3s;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);

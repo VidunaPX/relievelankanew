@@ -42,7 +42,7 @@ html {
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
   background: #526177;
 
   color: #0b1b2b;
@@ -63,7 +63,13 @@ body {
   text-align: left;
 }
 
-:where(h1, h2, h3, p) {
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  text-wrap: pretty;
+}
+
+:where(p) {
   text-wrap: pretty;
 }
 

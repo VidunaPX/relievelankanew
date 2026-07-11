@@ -116,7 +116,8 @@
 }
 
 .text-area__title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
   font-size: clamp(1.75rem, 3vw, 2.75rem);
   line-height: 1.15;
   color: var(--dark-blue);
