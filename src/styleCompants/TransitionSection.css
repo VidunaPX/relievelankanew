@@ -1,0 +1,7 @@
+.transition-section {
+  width: 100%;
+  min-height: 6rem;
+  background: var(--dark-blue);
+  padding: 0;
+  margin: 0;
+}

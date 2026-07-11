@@ -5,6 +5,7 @@ import './styles/waterfall.css';
 import BackgroundEffects from './components/BackgroundEffects';
 import Hero from './components/Hero';
 import Crisis from './components/Crisis';
+import TransitionSection from './components/TransitionSection';
 import OurWork from './components/OurWork';
 import AboutUs from './components/AboutUs';
 import Donate from './components/Donate';
@@ -56,6 +57,7 @@ const App = () => {
         <Hero onShowDonationDetails={handleShowDonationDetails} />
         <PostSection />
         <Crisis />
+        <TransitionSection />
 
         {/* <DonationJourney /> */}
 
