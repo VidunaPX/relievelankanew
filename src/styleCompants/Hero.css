@@ -13,8 +13,8 @@
 
 .video-background {
   --hero-scale: 1;
-  --hero-pad-x: clamp(2rem, 3.5vw, 4.5rem);
-  --hero-pad-y: clamp(2.5rem, 3.5vw, 4rem);
+  --hero-pad-x: clamp(1.5rem, 3vw, 3rem);
+  --hero-pad-y: 8px;
   --hero-pad-bottom: 0;
   --hero-logo-size: clamp(72px, 5vw, 110px);
   --hero-menu-btn: clamp(40px, 3.2vw, 56px);
@@ -152,7 +152,7 @@
 }
 
 .hero-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', sans;
   /* Fluid typography: scales with viewport width but clamps to sensible extremes */
   font-size: var(--hero-title-size) !important;
   color: white;
@@ -163,6 +163,8 @@
   line-height: 1.15;
   text-align: left;
   font-weight: 700;
+  text-transform: none;
+
 }
 
 .cta-wrapper{
