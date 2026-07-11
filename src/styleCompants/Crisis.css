@@ -45,7 +45,7 @@
   width: 100%;
   height: 60vh;
   --slide-size: 50%;
-  --slide-spacing: 0;
+  --slide-spacing: 1rem;
   padding: 0 1rem; /* allow breathing space at viewport edges */
 }
 
